@@ -40,5 +40,21 @@ header("location:index.php");
 //echo "entrou aqui  : ".$id;
 
 }
+ function buscar($id){
+
+    require_once("conexao.php");
+    $query .= 'SELECT * FROM quadrado';
+    $conexao = Conexao::getInstance();
+    if($id > 0){
+        $query = $query . ' WHERE id = :id';
+        $stmt->bindParam(':id',$id);
+    }
+
+    $stmt = $conexao->prepare($query);
+    if ($stmt->execute())
+        return $stmt->fetchAll();
+    
+    return false; 
+}
 
     ?>
