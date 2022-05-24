@@ -101,7 +101,7 @@ class quadrado{
 
           return $area;
 
-//ou   return $this->lado * $this->lado;
+//ou   return $this->lado() * 4;
 
 }
 
