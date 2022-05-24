@@ -73,8 +73,7 @@ else if($procura=="pro1"){
     
 while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
 ?>
-
-kkkk
+<br><br>
 <tr><td><?php echo $linha['id'];?></td>
     <td><?php echo $linha['lado'];?></td> 
     <td><?php echo $linha['cor'];?></td> 
@@ -83,7 +82,6 @@ kkkk
     <td><a href='acao.php?acao=editar&id=<?php echo $linha['id'];?>'>editar</a></td>
 </tr>
 
-<!-- <td><a href='cadquad.php?processo=editar&id=<?php echo $linha['id'];?>'> </a></td> -->
 
 <?php } ?> 
 </table>
