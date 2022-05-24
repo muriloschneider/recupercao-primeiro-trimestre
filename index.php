@@ -74,7 +74,7 @@ else if($procura=="pro1"){
 while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
 ?>
 
-
+kkkk
 <tr><td><?php echo $linha['id'];?></td>
     <td><?php echo $linha['lado'];?></td> 
     <td><?php echo $linha['cor'];?></td> 
