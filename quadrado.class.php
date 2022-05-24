@@ -59,14 +59,16 @@ class quadrado{
     public function editar(){
             
         $pdo = Conexao::getInstance();
-    $stmt = $pdo->prepare('UPDATE quadrado SET id = :id WHERE id = :id');
-    //$stmt->bindParam(':id', $id, PDO::PARAM_INT);
-    $stmt->bindParam(':id', $this->id, PDO::PARAM_STR);
+        $stmt = $pdo->prepare("UPDATE `quadrado` SET `lado` = :lado, `cor` = :cor WHERE (`id` = :id);");
     
-
+        $stmt->bindValue(':id', $this->setId($this->id), PDO::PARAM_INT);
+        $stmt->bindValue(':lado', $this->setLado($this->lado), PDO::PARAM_STR);
+        $stmt->bindValue(':cor', $this->setCor($this->cor), PDO::PARAM_STR);
 
 
         return $stmt->execute();
+
+       
         
     }
 

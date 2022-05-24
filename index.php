@@ -83,6 +83,8 @@ kkkk
     <td><a href='acao.php?acao=editar&id=<?php echo $linha['id'];?>'>editar</a></td>
 </tr>
 
+<!-- <td><a href='cadquad.php?processo=editar&id=<?php echo $linha['id'];?>'> </a></td> -->
+
 <?php } ?> 
 </table>
 <a href="listar.php"> listar </a>
