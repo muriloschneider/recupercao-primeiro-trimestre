@@ -19,6 +19,8 @@ $quad = new quadrado("1", 0, "");
 
 $procurar = isset($_POST["procurar"]) ? $_POST["procurar"] : ""; 
    $procura = isset($_POST["procura"]) ? $_POST["procura"] : "";
+   
+    $tipo = isset($_POST['tipo']) ? $_POST['tipo'] : 1;
 
 ?>
 
@@ -45,29 +47,35 @@ cor: <input type="color" name="cor" id="cor "value="">
 
 <input type="submit" name="acao" value="salvar">
 </form>
+
 <?php
 
 $pdo = Conexao::getInstance();
-    
-    if($procura==""){
-        $consulta = $pdo->query("SELECT * FROM quadrado 
-                                 WHERE lado LIKE '$procurar%' 
-                                 ORDER BY lado");
+if($procura==""){
+    $consulta = $pdo->query("SELECT * FROM quadrado 
+                             WHERE id LIKE '$procurar%'
+                             ORDER BY id");
 }
 
-else if($procura=="pro2"){
+ else if($procura=="pro1"){
     $consulta = $pdo->query("SELECT * FROM quadrado 
-                             WHERE cor LIKE '$procurar%' 
-                             ORDER BY cor");
+                             WHERE id LIKE '$procurar%'
+                             ORDER BY id");
 }
 
-else if($procura=="pro1"){
+ else if($procura=="pro2"){
     $consulta = $pdo->query("SELECT * FROM quadrado 
-                             WHERE lado = '$procurar%' 
+                             WHERE lado LIKE '$procurar%' 
                              ORDER BY lado");
 }
 
 
+
+else if($procura=="pro3"){
+    $consulta = $pdo->query("SELECT * FROM quadrado 
+                             WHERE cor LIKE '$procurar%' 
+                             ORDER BY cor");
+}
 
 
     
