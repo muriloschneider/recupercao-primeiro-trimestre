@@ -121,8 +121,53 @@ public function calcular_diagonal(){
     
     return $diagonal;
 
-    }
+}
 
+    public function listar($tipo = 0, $procurar = ""){
+        
+
+        $pdo = Conexao::getInstance();
+        if($tipo==""){
+            $tipo = $pdo->query("SELECT * FROM quadrado 
+                                     WHERE id LIKE '$procurar%'
+                                     ORDER BY id");
+        }
+        
+         else if($tipo =="1"){
+            $tipo = $pdo->query("SELECT * FROM quadrado 
+                                     WHERE id LIKE '$procurar%'
+                                     ORDER BY id");
+        }
+        
+         else if($tipo =="2"){
+            $tipo = $pdo->query("SELECT * FROM quadrado 
+                                     WHERE lado LIKE '$procurar%' 
+                                     ORDER BY lado");
+        }
+        
+        
+        
+        else if($tipo =="3"){
+            $tipo = $pdo->query("SELECT * FROM quadrado 
+                                     WHERE cor LIKE '$procurar%' 
+                                     ORDER BY cor");
+        }
+        
+
+//var_dump($tipo);
+return $tipo;
+
+        // $stmt = $pdo->prepare($query);
+        // $stmt->bindParam(':id', $id, PDO::PARAM_STR);
+        // $stmt->bindParam(':lado', $lado, PDO::PARAM_STR);
+        // $stmt->bindParam(':cor', $cor, PDO::PARAM_STR);
+
+    //     if ($stmt->execute())
+    //     return $stmt->fetchAll();
+    
+    // return false; 
+
+}
 
 }
 
