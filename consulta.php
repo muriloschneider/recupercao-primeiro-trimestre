@@ -63,6 +63,6 @@ while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
 
 <?php } ?> 
 </table>
-
+<a href="index.php"> index </a>
 </body>
 </html>

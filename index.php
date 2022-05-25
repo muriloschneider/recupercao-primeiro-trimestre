@@ -48,7 +48,39 @@ cor: <input type="color" name="cor" id="cor "value="">
 <input type="submit" name="acao" value="salvar">
 </form>
 
+<?php
 
+// $pdo = Conexao::getInstance();
+// if($procura==""){
+//     $consulta = $pdo->query("SELECT * FROM quadrado 
+//                              WHERE id LIKE '$procurar%'
+//                              ORDER BY id");
+// }
+
+//  else if($procura=="pro1"){
+//     $consulta = $pdo->query("SELECT * FROM quadrado 
+//                              WHERE id LIKE '$procurar%'
+//                              ORDER BY id");
+// }
+
+//  else if($procura=="pro2"){
+//     $consulta = $pdo->query("SELECT * FROM quadrado 
+//                              WHERE lado LIKE '$procurar%' 
+//                              ORDER BY lado");
+// }
+
+
+
+// else if($procura=="pro3"){
+//     $consulta = $pdo->query("SELECT * FROM quadrado 
+//                              WHERE cor LIKE '$procurar%' 
+//                              ORDER BY cor");
+// }
+
+
+    
+//while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
+?>
 <br><br>
 <tr><td><?php echo $linha['id'];?></td>
     <td><?php echo $linha['lado'];?></td> 
@@ -59,7 +91,7 @@ cor: <input type="color" name="cor" id="cor "value="">
 </tr>
 
 
-<?php // } ?> 
+<?php //} ?> 
 </table>
 <a href="consulta.php"> consulta </a>
 </body>
