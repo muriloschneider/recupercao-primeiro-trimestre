@@ -90,7 +90,7 @@ cor: <input type="color" name="cor" id="cor "value="">
     <td><a href='acao.php?acao=editar&id=<?php echo $linha['id'];?>'>editar</a></td>
 </tr>
 
-kkk
+
 
 <?php //} ?> 
 </table>
