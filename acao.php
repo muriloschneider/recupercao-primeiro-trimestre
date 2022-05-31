@@ -8,15 +8,30 @@ $cor=isset($_GET["cor"])?$_GET["cor"]:"";
 $id=isset($_GET["id"])?$_GET["id"]:"";
 
 if($acao == "salvar"){
+    $id= isset($_POST['id']) ? $_POST['id'] : "";
+    if($id == 0){
 
-    $quad = new quadrado("0", $lado, $cor);
-    
+ $quad = new quadrado("0", $lado, $cor);
+
    
-$quad->inserir();
+    $funcao = $quad->inserir();
     header("location:index.php");
        
-}       
+}  
+
+else {
+
+ $quad = new quadrado($id, $lado, $cor);
     
+   
+ $funcao = $quad->editar();
+ header("location:index.php");
+ }
+ }
+ //echo "entrou aqui  : ".$id;
+
+
+
 else if($acao == "excluir"){
 
     $quad = new quadrado($id, "", "");
@@ -28,33 +43,19 @@ header("location:index.php");
 //echo "entrou aqui  : ".$id;
 
 }
+//Consultar dados
+function buscarDados($id){
+    $pdo = Conexao::getInstance();
+    $consulta = $pdo->query("SELECT * FROM quadrado WHERE id= $id");
+    $dados = array();
+    while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
+        $dados['id'] = $linha['id'];
+        $dados['lado'] = $linha['lado'];
+        $dados['cor'] = $linha['cor'];
 
-else if($acao == "editar"){
-
-    $quad = new quadrado($id, "", "");
-    
-   
-$quad->editar();
-header("location:index.php");
-
-//echo "entrou aqui  : ".$id;
-
-}
- function buscar($id){
-
-    require_once("conexao.php");
-    $query .= 'SELECT * FROM quadrado';
-    $conexao = Conexao::getInstance();
-    if($id > 0){
-        $query = $query . ' WHERE id = :id';
-        $stmt->bindParam(':id',$id);
     }
-
-    $stmt = $conexao->prepare($query);
-    if ($stmt->execute())
-        return $stmt->fetchAll();
-    
-    return false; 
+    //var_dump($dados);
+    return $dados;
 }
 
     ?>

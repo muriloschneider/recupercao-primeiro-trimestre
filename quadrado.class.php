@@ -32,21 +32,18 @@ class quadrado{
     
     
 
-    public function buscar($id){
-
-        require_once("conexao.php");
-        $query .= 'SELECT * FROM quadrado';
-        $conexao = Conexao::getInstance();
-        if($id > 0){
-            $query = $query . ' WHERE id = :id';
-            $stmt->bindParam(':id',$id);
+   public function buscar($id){
+        $pdo = Conexao::getInstance();
+        $consulta = $pdo->query("SELECT * FROM quadrado WHERE id= $id");
+        $dados = array();
+        while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
+            $dados['id'] = $linha['id'];
+            $dados['lado'] = $linha['lado'];
+            $dados['cor'] = $linha['cor'];
+    
         }
-
-        $stmt = $conexao->prepare($query);
-        if ($stmt->execute())
-            return $stmt->fetchAll();
-        
-        return false; 
+        //var_dump($dados);
+        return $dados;
     }
 
     function excluir(){

@@ -22,7 +22,28 @@ $procurar = isset($_POST["procurar"]) ? $_POST["procurar"] : "";
    
     $tipo = isset($_POST['tipo']) ? $_POST['tipo'] : 1;
 
+    $lado = isset($_GET['lado']) ? $_GET['lado'] : 0;
+    $cor = isset($_GET['cor']) ? $_GET['cor'] : "";
+
+$acao = isset($_GET['acao']) ? $_GET['acao'] : "";
+$id = 0;
+
+
+if($acao == "editar"){
+
+ 
+$id = isset($_GET['id']) ? $_GET['id'] : "";
+
+$quad = new quadrado(0, 0, "");
+
+$dados = $quad->buscar($id);
+
+$quad = new quadrado($dados["id"],$dados["lado"] , $dados["cor"]);
+
+}
 ?>
+
+
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -41,9 +62,9 @@ $procurar = isset($_POST["procurar"]) ? $_POST["procurar"] : "";
 </tr>
 
 <form method="get" action="acao.php">
-
-lado do quadrado: <input type="text" name="lado" id="lado" value=""><br><br>
-cor: <input type="color" name="cor" id="cor "value="">
+id: <input readonly type="text" name="id" id="id "value="<?php if($acao == "editar") echo $quad->getid();  else echo 0;?>"> <br><br>
+lado do quadrado: <input type="text"  name="lado" id="lado" value="<?php if($acao == "editar") echo $quad->getlado()  ?>"><br><br>
+cor: <input type="color" name="cor" id="cor "value="<?php if($acao == "editar") echo $quad->getcor()  ?>">
 
 <input type="submit" name="acao" value="salvar">
 </form>
@@ -87,7 +108,7 @@ while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
     <td><?php echo $linha['cor'];?></td> 
     <td><?php echo "<a href='mostrar.php?lado=".$linha['lado']."&cor=".$linha['cor']."'> mostrar </a> " ;?></td> 
     <td><a href="javascript:excluirRegistro('acao.php?acao=excluir&id=<?php echo $linha['id'];?>')">deletar</a></td>
-    <td><a href='acao.php?acao=editar&id=<?php echo $linha['id'];?>'>editar</a></td>
+    <td><a href='index.php?acao=editar&id=<?php echo $linha['id'];?>'>editar</a></td>
 </tr>
 
 
