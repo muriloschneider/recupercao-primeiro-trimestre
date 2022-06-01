@@ -8,10 +8,10 @@ $cor=isset($_GET["cor"])?$_GET["cor"]:"";
 $id=isset($_GET["id"])?$_GET["id"]:"";
 
 if($acao == "salvar"){
-    $id= isset($_POST['id']) ? $_POST['id'] : "";
+    $id= isset($_GET['id']) ? $_GET['id'] : "";
     if($id == 0){
 
- $quad = new quadrado("0", $lado, $cor);
+ $quad = new quadrado($id, $lado, $cor);
 
    
     $funcao = $quad->inserir();
@@ -26,9 +26,10 @@ else {
    
  $funcao = $quad->editar();
  header("location:index.php");
- }
- }
  //echo "entrou aqui  : ".$id;
+ }
+ }
+ 
 
 
 

@@ -10,9 +10,10 @@
     </script>
 
     <?php
-include_once "quadrado.class.php";
+    require_once "quadrado.class.php";
+    include_once "acao.php";
 
-include_once "conf/default.inc.php";
+    include_once "conf/default.inc.php";
     require_once "conf/Conexao.php";
 
 $quad = new quadrado("1", 0, "");

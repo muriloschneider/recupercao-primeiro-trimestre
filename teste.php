@@ -11,13 +11,15 @@ $id = 24;
 $quad = new quadrado(0, 0 , "");
 
 
-$dados = $quad->buscar($id);
+$pdo = Conexao::getInstance();
+        $stmt = $pdo->prepare("UPDATE `quadrado` SET `lado` = :lado, `cor` = :cor WHERE (`id` = :id);");
+    
+        // $stmt->bindValue(':id', $this->setId($this->id), PDO::PARAM_INT);
+        // $stmt->bindValue(':lado', $this->setLado($this->lado), PDO::PARAM_STR);
+        // $stmt->bindValue(':cor', $this->setCor($this->cor), PDO::PARAM_STR);
 
-$quad = new quadrado($dados["id"],$dados["lado"] , $dados["cor"]);
 
-
-echo $quad;
-
+        return $stmt->execute();
 
 
 
