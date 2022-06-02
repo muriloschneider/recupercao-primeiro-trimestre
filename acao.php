@@ -11,7 +11,7 @@ if($acao == "salvar"){
     $id= isset($_GET['id']) ? $_GET['id'] : "";
     if($id == 0){
 
- $quad = new quadrado($id, $lado, $cor);
+ $quad = new quadrado($id, $lado, $cor, "0");
 
    
     $funcao = $quad->inserir();
@@ -21,7 +21,7 @@ if($acao == "salvar"){
 
 else {
 
- $quad = new quadrado($id, $lado, $cor);
+ $quad = new quadrado($id, $lado, $cor, "0");
     
    
  $funcao = $quad->editar();
@@ -35,7 +35,7 @@ else {
 
 else if($acao == "excluir"){
 
-    $quad = new quadrado($id, "", "");
+    $quad = new quadrado($id, "", "", "0");
     
    
 $quad->excluir();
@@ -53,7 +53,7 @@ function buscarDados($id){
         $dados['id'] = $linha['id'];
         $dados['lado'] = $linha['lado'];
         $dados['cor'] = $linha['cor'];
-
+        $dados['tabuleiro_id_tabuleiro'] = $linha['tabuleiro_id_tabuleiro'];
     }
     //var_dump($dados);
     return $dados;

@@ -16,7 +16,7 @@
     include_once "conf/default.inc.php";
     require_once "conf/Conexao.php";
 
-$quad = new quadrado("1", 0, "");
+$quad = new quadrado("1", 0, "", 0);
 
 $procurar = isset($_POST["procurar"]) ? $_POST["procurar"] : ""; 
    $procura = isset($_POST["procura"]) ? $_POST["procura"] : "";
@@ -35,11 +35,11 @@ if($acao == "editar"){
  
 $id = isset($_GET['id']) ? $_GET['id'] : "";
 
-$quad = new quadrado(0, 0, "");
+$quad = new quadrado(0, 0, "", 0);
 
 $dados = $quad->buscar($id);
 
-$quad = new quadrado($dados["id"],$dados["lado"] , $dados["cor"]);
+$quad = new quadrado($dados["id"],$dados["lado"] , $dados["cor"], $dados["tabuleiro_id_tabuleiro"]);
 
 }
 ?>
@@ -63,6 +63,7 @@ $quad = new quadrado($dados["id"],$dados["lado"] , $dados["cor"]);
 </tr>
 
 <form method="get" action="acao.php">
+id do tabuleiro: <input type="text"  name="tabuleiro_id_tabuleiro" id="tabuleiro_id_tabuleiro" value="<?php if($acao == "editar") echo $quad->gettabuleiro_id_tabuleiro()  ?>"><br><br>
 id: <input readonly type="text" name="id" id="id "value="<?php if($acao == "editar") echo $quad->getid();  else echo 0;?>"> <br><br>
 lado do quadrado: <input type="text"  name="lado" id="lado" value="<?php if($acao == "editar") echo $quad->getlado()  ?>"><br><br>
 cor: <input type="color" name="cor" id="cor "value="<?php if($acao == "editar") echo $quad->getcor()  ?>">
@@ -98,7 +99,11 @@ else if($procura=="pro3"){
                              WHERE cor LIKE '$procurar%' 
                              ORDER BY cor");
 }
-
+else if($procura=="pro4"){
+    $consulta = $pdo->query("SELECT * FROM quadrado 
+                             WHERE tabuleiro_id_tabuleiro LIKE '$procurar%' 
+                             ORDER BY tabuleiro_id_tabuleiro");
+}
 
     
 while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
@@ -107,6 +112,7 @@ while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
 <tr><td><?php echo $linha['id'];?></td>
     <td><?php echo $linha['lado'];?></td> 
     <td><?php echo $linha['cor'];?></td> 
+    <td><?php echo $linha['tabuleiro_id_tabuleiro'];?></td> 
     <td><?php echo "<a href='mostrar.php?lado=".$linha['lado']."&cor=".$linha['cor']."'> mostrar </a> " ;?></td> 
     <td><a href="javascript:excluirRegistro('acao.php?acao=excluir&id=<?php echo $linha['id'];?>')">deletar</a></td>
     <td><a href='index.php?acao=editar&id=<?php echo $linha['id'];?>'>editar</a></td>
