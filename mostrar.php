@@ -3,6 +3,7 @@
     include_once "quadrado.class.php";
     $lado = isset($_GET['lado']) ? $_GET['lado']: 0;
     $cor = isset($_GET['cor']) ? $_GET['cor']: "";
+    $idtabu = isset($_GET['idtabu']) ? $_GET['idtabu']: "";
 ?>
 <html lang="en">
 <head>
@@ -20,7 +21,7 @@
 </head>
 <body>
     <?php
-    $quad = new quadrado("1", $lado, $cor);
+    $quad = new quadrado("1", $lado, $cor, $idtabu);
     echo $quad;
     ?>
     <div></div>

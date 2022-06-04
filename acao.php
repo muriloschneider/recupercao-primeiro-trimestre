@@ -3,7 +3,7 @@
     require_once "quadrado.class.php";
     include_once "conf/default.inc.php";
     require_once "conf/Conexao.php";
-    require_once ("tabuleiro.class.php");
+   // require_once "tabuleiro.class.php";
 
 $acao=isset($_GET["acao"])?$_GET["acao"]:"";
 $lado=isset($_GET["lado"])?$_GET["lado"]:"";
