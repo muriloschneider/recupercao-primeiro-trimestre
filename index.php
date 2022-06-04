@@ -10,7 +10,7 @@
     </script>
 
     <?php
-    require_once "quadrado.class.php";
+    require_once "classe../quadrado.class.php";
     include_once "acao.php";
 
     include_once "conf/default.inc.php";
