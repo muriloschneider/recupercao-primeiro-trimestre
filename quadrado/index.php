@@ -65,6 +65,11 @@ $quad = new quadrado($dados["id"],$dados["lado"] , $dados["cor"], $dados["tabule
 </tr>
 
 <form method="get" action="acao.php">
+ Escolha o Tabuleiro
+                    <select name="idtabu"  id="idtabu" value="<?php if ($acao == "editar") echo $quad->getidtabu(); ?>">
+                         <?php
+                            //echo lista_tabuleiro(0); 
+                        ?> 
 id do tabuleiro: <input type="text"  name="idtabu" id="idtabu" value="<?php if($acao == "editar") echo $quad->getidtabu()  ?>"><br><br>
 id: <input readonly type="text" name="id" id="id "value="<?php if($acao == "editar") echo $quad->getid();  else echo 0;?>"> <br><br>
 lado do quadrado: <input type="text"  name="lado" id="lado" value="<?php if($acao == "editar") echo $quad->getlado()  ?>"><br><br>
