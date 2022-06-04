@@ -10,11 +10,11 @@
     </script>
 
     <?php
-    require_once "classe../quadrado.class.php";
+    require_once "../classe/quadrado.class.php";
     include_once "acao.php";
 
-    include_once "conf/default.inc.php";
-    require_once "conf/Conexao.php";
+    include_once "../conf/default.inc.php";
+    require_once "../conf/Conexao.php";
 
 $quad = new quadrado("1", 0, "", 0);
 
@@ -65,7 +65,7 @@ $quad = new quadrado($dados["id"],$dados["lado"] , $dados["cor"], $dados["tabule
 </tr>
 
 <form method="get" action="acao.php">
-id do tabuleiro: <input type="text"  name="tabuleiro_id_tabuleiro" id="tabuleiro_id_tabuleiro" value="<?php if($acao == "editar") echo $quad->gettabuleiro_id_tabuleiro()  ?>"><br><br>
+id do tabuleiro: <input type="text"  name="idtabu" id="idtabu" value="<?php if($acao == "editar") echo $quad->getidtabu()  ?>"><br><br>
 id: <input readonly type="text" name="id" id="id "value="<?php if($acao == "editar") echo $quad->getid();  else echo 0;?>"> <br><br>
 lado do quadrado: <input type="text"  name="lado" id="lado" value="<?php if($acao == "editar") echo $quad->getlado()  ?>"><br><br>
 cor: <input type="color" name="cor" id="cor "value="<?php if($acao == "editar") echo $quad->getcor()  ?>">
