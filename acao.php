@@ -1,17 +1,21 @@
 <?php
 
-require_once "quadrado.class.php";
+    require_once "quadrado.class.php";
+    include_once "conf/default.inc.php";
+    require_once "conf/Conexao.php";
+    require_once ("tabuleiro.class.php");
 
 $acao=isset($_GET["acao"])?$_GET["acao"]:"";
 $lado=isset($_GET["lado"])?$_GET["lado"]:"";
 $cor=isset($_GET["cor"])?$_GET["cor"]:"";
 $id=isset($_GET["id"])?$_GET["id"]:"";
+$idtabu=isset($_GET["idtabu"])?$_GET["idtabu"]:"";
 
 if($acao == "salvar"){
     $id= isset($_GET['id']) ? $_GET['id'] : "";
     if($id == 0){
 
- $quad = new quadrado($id, $lado, $cor, "0");
+ $quad = new quadrado($id, $lado, $cor, $idtabu);
 
    
     $funcao = $quad->inserir();
@@ -21,7 +25,7 @@ if($acao == "salvar"){
 
 else {
 
- $quad = new quadrado($id, $lado, $cor, "0");
+ $quad = new quadrado($id, $lado, $cor, $idtabu);
     
    
  $funcao = $quad->editar();
@@ -57,6 +61,21 @@ function buscarDados($id){
     }
     //var_dump($dados);
     return $dados;
+}
+
+function exibir($chave, $dados){
+    $str = 0;
+    foreach($dados as $linha){
+        $str .= "<option value='".$linha[$chave[0]]."'>ID: ".$linha[$chave[0]]." | Lado: ".$linha[$chave[1]]."</option>";
+    }
+    return $str;
+}
+
+function lista_tabuleiro($idtabuleiro){
+    $tab = new Tabuleiro("","");
+    $lista = $tab->buscar($idtabuleiro);
+    return exibir(array('idtabuleiro', 'lado'), $lista);
+
 }
 
     ?>

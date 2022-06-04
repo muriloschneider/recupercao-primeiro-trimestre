@@ -28,12 +28,14 @@ $procurar = isset($_POST["procurar"]) ? $_POST["procurar"] : "";
 
 $acao = isset($_GET['acao']) ? $_GET['acao'] : "";
 $id = 0;
+$tabuleiro_id_tabuleiro = 0;
 
 
 if($acao == "editar"){
 
  
 $id = isset($_GET['id']) ? $_GET['id'] : "";
+$tabuleiro_id_tabuleiro = isset($_GET['tabuleiro_id_tabuleiro']) ? $_GET['tabuleiro_id_tabuleiro'] : "";
 
 $quad = new quadrado(0, 0, "", 0);
 

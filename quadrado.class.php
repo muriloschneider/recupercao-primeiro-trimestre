@@ -10,27 +10,25 @@ class quadrado{
     private $tabuleiro_id_tabuleiro;
     
     
-
-
-    public function __construct($id,$lado,$cor, $tabuleiro_id_tabuleiro){
-        $this->id = $id;
-        $this->lado = $lado;
-        $this->cor = $cor;
-        $this->$tabuleiro_id_tabuleiro = $tabuleiro_id_tabuleiro;
-        
-       
+    public function __construct($id, $lado, $cor, $idtabu) {
+        $this->setId($id);
+        $this->setLado($lado);
+        $this->setCor($cor);
+        $this->setIdTabu($idtabu);
     }
+
+   
 
     public function getid(){  return $this->id; }
     public function getlado(){  return $this->lado; }
     public function getcor(){  return $this->cor; }
-    public function gettabuleiro_id_tabuleiro(){  return $this->tabuleiro_id_tabuleiro; }
+    public function getidtabu(){  return $this->tabuleiro_id_tabuleiro; }
    
 
     public function setid($id) { $this->id = $id; }
     public function setlado($lado) { $this->lado = $lado; }
     public function setcor($cor) { $this->cor = $cor; }
-    public function settabuleiro_id_tabuleiro($tabuleiro_id_tabuleiro) { $this->tabuleiro_id_tabuleiro = $tabuleiro_id_tabuleiro; }
+    public function setidtabu($idtabu) { $this->tabuleiro_id_tabuleiro = $idtabu; }
     
     
 
@@ -63,7 +61,7 @@ class quadrado{
         $stmt->bindValue(':id', $this->getId(), PDO::PARAM_INT);
         $stmt->bindValue(':lado', $this->getLado(), PDO::PARAM_STR);
         $stmt->bindValue(':cor', $this->getCor(), PDO::PARAM_STR);
-        $stmt->bindValue(':tabuleiro_id_tabuleiro', $this->gettabuleiro_id_tabuleiro(), PDO::PARAM_STR);
+        $stmt->bindValue(':tabuleiro_id_tabuleiro', $this->getidtabu(), PDO::PARAM_STR);
 
         return $stmt->execute();
 
@@ -75,7 +73,7 @@ class quadrado{
 
         return  "<br> lado: ".$this->getlado().
         "<br> cor: ".$this->getcor().
-        "<br> id tabuleiro: ".$this->gettabuleiro_id_tabuleiro().
+        "<br> id tabuleiro: ".$this->getidtabu().
         "<br>   area: " .$this->calcular_area().
         "<br> perimetro: " .$this->calcular_perimetro().
         "<br> diagonal: " .$this->calcular_diagonal();
@@ -92,7 +90,7 @@ class quadrado{
 
         $lado = $this->getlado();
         $cor = $this->getcor(); 
-        $tabuleiro_id_tabuleiro = $this->gettabuleiro_id_tabuleiro(); 
+        $tabuleiro_id_tabuleiro = $this->getidtabu(); 
         return $stmt->execute();
         
     }
