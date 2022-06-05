@@ -10,8 +10,8 @@ class tabuleiro{
     
     
     public function __construct($idtabu, $ladotabu) {
-        $this->setIdtabu($idtabu);
-        $this->setLadotabu($ladotabu);
+        $this->setidtabu($idtabu);
+        $this->setladotabu($ladotabu);
     }
 
    
@@ -22,7 +22,7 @@ class tabuleiro{
    
 
     public function setidtabu($idtabu) { $this->id_tabuleiro = $idtabu; }
-    public function settabu($tabu) { $this->lado_tabuleiro = $ladotabu; }
+    public function setladotabu($ladotabu) { $this->lado_tabuleiro = $ladotabu; }
     
     
     
@@ -33,7 +33,7 @@ class tabuleiro{
         $dados = array();
         while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
             $dados['id_tabuleiro'] = $linha['id_tabuleiro'];
-            $dados['lado'] = $linha['lado'];
+            $dados['lado_tabuleiro'] = $linha['lado_tabuleiro'];
             
         }
         //var_dump($dados);
@@ -83,23 +83,23 @@ class tabuleiro{
     }
 
 
-    public function calcular_area(){
+//     public function calcular_area(){
 
-          $area = $this->lado * $this->lado;
+//           $area = $this->lado * $this->lado;
 
-          return $area;
+//           return $area;
 
-//ou   return $this->lado() * 4;
+// //ou   return $this->lado() * 4;
 
-}
+// }
 
-public function calcular_perimetro(){
+// public function calcular_perimetro(){
 
-          $perimetro = $this->lado * 4;
+//           $perimetro = $this->lado * 4;
 
-          return $perimetro;
+//           return $perimetro;
 
-}
+// }
 
     public function listar($tipo = 0, $procurar = ""){
         
