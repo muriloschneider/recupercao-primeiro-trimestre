@@ -40,7 +40,7 @@ else if($acao == "excluir"){
 
    
 $tab->excluir();
-header("location:index.php");
+header("location:tabu.php");
 
 //echo "entrou aqui  : ".$id;
 

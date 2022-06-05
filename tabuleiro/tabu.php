@@ -35,9 +35,9 @@ $idtabu = isset($_GET['idtabu']) ? $_GET['idtabu'] : "";
 $tab = new Tabuleiro(0, 0);
 
 
-$dados = $tab->buscar($id);
+$dados = $tab->buscar($idtabu);
 
-$tab = new tabuleiro($dados["id_tabuleiro"],$dados["lado_tabueiro"]);
+$tab = new tabuleiro($dados["id_tabuleiro"],$dados["lado_tabuleiro"]);
 
 }
 ?>
@@ -67,8 +67,9 @@ $tab = new tabuleiro($dados["id_tabuleiro"],$dados["lado_tabueiro"]);
                             //echo lista_tabuleiro(0); 
                         ?> 
 
-id: <input readonly type="text" name="id" id="id "value="<?php if($acao == "editar") echo $tab->getidtabu();  else echo 0;?>"> <br><br>
-lado do tabuleiro: <input type="text"  name="lado" id="lado" value="<?php if($acao == "editar") echo $tab->getlado()  ?>"><br><br>
+id: <input type="text" name="idtabu" id="idtabu" value="<?php if($acao == "editar") echo $tab->getidtabu();  else echo 0;?>"> <br><br>
+lado do tabuleiro: <input type="text"  name="ladotabu" id="ladotabu" value="<?php if($acao == "editar") echo $tab->getlado()  ?>"><br><br>
+
 
 
 <input type="submit" name="acao" value="salvar">
@@ -78,9 +79,9 @@ lado do tabuleiro: <input type="text"  name="lado" id="lado" value="<?php if($ac
 
 $pdo = Conexao::getInstance();
 if($procura==""){
-    $consulta = $pdo->query("SELECT * FROM quadrado 
-                             WHERE id LIKE '$procurar%'
-                             ORDER BY id");
+    $consulta = $pdo->query("SELECT * FROM tabuleiro 
+                             WHERE id_tabuleiro LIKE '$procurar%'
+                             ORDER BY id_tabuleiro");
 }
 
  else if($procura=="pro1"){
@@ -101,10 +102,10 @@ if($procura==""){
 while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
 ?>
 <br><br>
-<tr><td><?php echo $linha['id'];?></td>
-    <td><?php echo $linha['lado'];?></td> 
-    <td><?php echo "<a href='mostrar.php?lado=".$linha['lado']."&cor=".$linha['cor']."'> mostrar </a> " ;?></td> 
-    <td><a href="javascript:excluirRegistro('acaotabu.php?acao=excluir&id_tabuleiro=<?php echo $linha['id_tabuleiro'];?>')">deletar</a></td>
+<tr><td><?php echo $linha['id_tabuleiro'];?></td>
+    <td><?php echo $linha['lado_tabuleiro'];?></td> 
+    <td><?php //echo "<a href='mostrar.php?lado=".$linha['lado']."&cor=".$linha['cor']."'> mostrar </a> " ;?></td> 
+    <td><a href="javascript:excluirRegistro('acaotabu.php?acao=excluir&idtabu=<?php echo $linha['id_tabuleiro'];?>')">deletar</a></td>
     <td><a href='tabu.php?acao=editar&idtabu=<?php echo $linha['id_tabuleiro'];?>'>editar</a></td>
 </tr>
 
