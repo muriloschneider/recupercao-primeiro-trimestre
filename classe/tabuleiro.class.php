@@ -50,7 +50,7 @@ class tabuleiro{
     public function editar(){
             
         $pdo = Conexao::getInstance();
-        $stmt = $pdo->prepare("UPDATE `tabuleiro` SET `lado_tabuleiro` = :lado_tabuleiro, `cor` = :cor, `tabuleiro_id_tabuleiro` = :tabuleiro_id_tabuleiro WHERE (`id` = :id);");
+        $stmt = $pdo->prepare("UPDATE `tabuleiro` SET `lado_tabuleiro` = :lado_tabuleiro WHERE (`id_tabuleiro` = :id_tabuleiro);");
     
         $stmt->bindValue(':id_tabuleiro', $this->getidtabu(), PDO::PARAM_INT);
         $stmt->bindValue(':lado_tabuleiro', $this->getladotabu(), PDO::PARAM_STR);

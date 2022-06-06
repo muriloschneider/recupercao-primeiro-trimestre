@@ -1,10 +1,8 @@
 <?php
 
-    require_once "../classe/quadrado.class.php";
-
+    require_once "../classe/usuario.class.php";
     include_once "../conf/default.inc.php";
     require_once "../conf/Conexao.php";
-    require_once "../classe/tabuleiro.class.php";
 
 $acao=isset($_GET["acao"])?$_GET["acao"]:"";
 $lado=isset($_GET["lado"])?$_GET["lado"]:"";
@@ -13,24 +11,24 @@ $id=isset($_GET["id"])?$_GET["id"]:"";
 $idtabu=isset($_GET["idtabu"])?$_GET["idtabu"]:"";
 
 if($acao == "salvar"){
-    $id= isset($_GET['id']) ? $_GET['id'] : "";
-    if($id == 0){
+    $idusu= isset($_GET['idusu']) ? $_GET['idusu'] : "";
+    if($idusu == 0){
 
- $quad = new quadrado($id, $lado, $cor, $idtabu);
+ $usu = new usuario($idusu, $nomeusu, $login, $senha);
 
    
-    $funcao = $quad->inserir();
-    header("location:index.php");
+    $funcao = $usu->inserir();
+    header("location:usuario.php");
        
 }  
 
 else {
 
- $quad = new quadrado($id, $lado, $cor, $idtabu);
+ $usu = new usuario($id_usuario, $nome_usuario, $login, $senha);
     
    
- $funcao = $quad->editar();
- header("location:index.php");
+ $funcao = $usu->editar();
+ header("location:usuario.php");
  //echo "entrou aqui  : ".$id;
  }
  }
@@ -38,45 +36,45 @@ else {
 
 
 
-else if($acao == "excluir"){
+ if($acao == "excluir"){
 
-    $quad = new quadrado($id, "", "", "0");
+    $usu = new usuario($idusu, "", "", "");
     
    
-$quad->excluir();
-header("location:index.php");
+$usu->excluir();
+header("location:usuario.php");
 
 //echo "entrou aqui  : ".$id;
 
 }
 //Consultar dados
-function buscarDados($id){
+function buscarDados($idusu){
     $pdo = Conexao::getInstance();
-    $consulta = $pdo->query("SELECT * FROM quadrado WHERE id= $id");
+    $consulta = $pdo->query("SELECT * FROM usuario WHERE id_usuario= $id_usuario");
     $dados = array();
     while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
-        $dados['id'] = $linha['id'];
-        $dados['lado'] = $linha['lado'];
-        $dados['cor'] = $linha['cor'];
-        $dados['tabuleiro_id_tabuleiro'] = $linha['tabuleiro_id_tabuleiro'];
+        $dados['id_usuario'] = $linha['id_usuario'];
+        $dados['nome_usuario'] = $linha['nome_usuario'];
+        $dados['login'] = $linha['login'];
+        $dados['senha'] = $linha['senha'];
     }
     //var_dump($dados);
     return $dados;
 }
 
-function exibir($chave, $dados){
-    $str = 0;
-    foreach($dados as $linha){
-        $str .= "<option value='".$linha[$chave[0]]."'>ID: ".$linha[$chave[0]]." | Lado: ".$linha[$chave[1]]."</option>";
-    }
-    return $str;
-}
+// function exibir($chave, $dados){
+//     $str = 0;
+//     foreach($dados as $linha){
+//         $str .= "<option value='".$linha[$chave[0]]."'>ID: ".$linha[$chave[0]]." | Lado: ".$linha[$chave[1]]."</option>";
+//     }
+//     return $str;
+// }
 
-function lista_tabuleiro($idtabu){
-    $tab = new Tabuleiro("","");
-    $lista = $tab->buscar($idtabu);
-    return exibir(array('id_tabuleiro', 'lado'), $lista);
+// function lista_tabuleiro($idtabu){
+//     $tab = new Tabuleiro("","");
+//     $lista = $tab->buscar($idtabu);
+//     return exibir(array('id_tabuleiro', 'lado'), $lista);
 
-}
+// }
 
     ?>

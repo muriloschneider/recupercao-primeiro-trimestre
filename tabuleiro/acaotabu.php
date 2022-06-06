@@ -13,7 +13,7 @@ if($acao == "salvar"){
     $idtabu= isset($_GET['idtabu']) ? $_GET['idtabu'] : "";
     if($idtabu == 0){
 
- $tab = new Tabuleiro($idtabu,$ladotabu);
+ $tab = new tabuleiro($idtabu,$ladotabu);
    
     $funcao = $tab->inserir();
     header("location:tabu.php");
@@ -22,7 +22,7 @@ if($acao == "salvar"){
 
 else {
 
- $tab = new Tabuleiro($idtabu,$ladotabu);
+ $tab = new tabuleiro($idtabu,$ladotabu);
 
    
  $funcao = $tab->editar();

@@ -60,7 +60,7 @@ $tab = new tabuleiro($dados["id_tabuleiro"],$dados["lado_tabuleiro"]);
     <th>mostrar</th>
 </tr>
 
-<form method="get" action="acao.php">
+<form method="get" action="acaotabu.php">
  <!-- Escolha o Tabuleiro
                     <select name="idtabu"  id="idtabu" value="<?php // if ($acao == "editar") echo $quad->getidtabu(); ?>"> -->
                          <?php
@@ -72,7 +72,7 @@ lado do tabuleiro: <input type="text"  name="ladotabu" id="ladotabu" value="<?ph
 
 
 
-<input type="submit" name="acao" value="salvar">
+<input type="submit" name="acaotabu" value="salvar">
 </form>
 
 <?php
