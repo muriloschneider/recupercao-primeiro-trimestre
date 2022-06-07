@@ -49,7 +49,7 @@
     function excluir(){
         $pdo = Conexao::getInstance();
         $stmt = $pdo->prepare('DELETE FROM usuario WHERE id_usuario = :id_usuario');
-        $stmt->bindValue(':id_usuario', $idusu);
+        $stmt->bindValue(':id_usuario', $id_usuario);
         
         return $stmt->execute();
     }

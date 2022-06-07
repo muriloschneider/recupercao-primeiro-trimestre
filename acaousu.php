@@ -37,7 +37,7 @@ else {
 
  if($acao == "excluir"){
 
-    $usu = new usuario($idusu, "", "", "");
+    $usu = new usuario($id_usuario, "", "", "");
     
    
 $usu->excluir();
