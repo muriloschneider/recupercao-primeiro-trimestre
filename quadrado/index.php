@@ -4,6 +4,10 @@
 <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
+<li> <a href="../tabuleiro../tabu.php"> tabuleiro </a> </li>
+<li> <a href="../usuario.php"> usuario </a> </li>
+ 
+
 <script>
         function excluirRegistro(url){
             if (confirm("Confirma Exclusão?"))
@@ -75,7 +79,7 @@ $quad = new quadrado($dados["id"],$dados["lado"] , $dados["cor"], $dados["tabule
  Escolha o Tabuleiro
                     <select name="idtabu"  id="idtabu" value="<?php if ($acao == "editar") echo $quad->getidtabu(); ?>">
                          <?php
-                            //echo lista_tabuleiro(0); 
+                            echo lista_tabuleiro(0); 
                         ?> 
 id do tabuleiro: <input type="text"  name="idtabu" id="idtabu" value="<?php if($acao == "editar") echo $quad->getidtabu()  ?>"><br><br>
 id: <input readonly type="text" name="id" id="id "value="<?php if($acao == "editar") echo $quad->getid();  else echo 0;?>"> <br><br>

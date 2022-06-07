@@ -1,11 +1,11 @@
 <?php
 //tabuleiro
-include_once "../conf/default.inc.php";
+    include_once "../conf/default.inc.php";
     require_once "../conf/Conexao.php";
 
-class tabuleiro{
-    private $id_tabuleiro;
-    private $lado_tabuleiro;
+    class tabuleiro{
+        private $id_tabuleiro;
+        private $lado_tabuleiro;
    
     
     
@@ -31,9 +31,9 @@ class tabuleiro{
         $pdo = Conexao::getInstance();
         $consulta = $pdo->query("SELECT * FROM tabuleiro WHERE id_tabuleiro= $id_tabuleiro");
         $dados = array();
-        while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
-            $dados['id_tabuleiro'] = $linha['id_tabuleiro'];
-            $dados['lado_tabuleiro'] = $linha['lado_tabuleiro'];
+            while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
+                $dados['id_tabuleiro'] = $linha['id_tabuleiro'];
+                $dados['lado_tabuleiro'] = $linha['lado_tabuleiro'];
             
         }
         //var_dump($dados);
@@ -83,23 +83,7 @@ class tabuleiro{
     }
 
 
-//     public function calcular_area(){
 
-//           $area = $this->lado * $this->lado;
-
-//           return $area;
-
-// //ou   return $this->lado() * 4;
-
-// }
-
-// public function calcular_perimetro(){
-
-//           $perimetro = $this->lado * 4;
-
-//           return $perimetro;
-
-// }
 
     public function listar($tipo = 0, $procurar = ""){
         
@@ -125,19 +109,9 @@ class tabuleiro{
         
 
 //var_dump($tipo);
-return $tipo;
+        return $tipo;
 
-        // $stmt = $pdo->prepare($query);
-        // $stmt->bindParam(':id', $id, PDO::PARAM_STR);
-        // $stmt->bindParam(':lado', $lado, PDO::PARAM_STR);
-        // $stmt->bindParam(':cor', $cor, PDO::PARAM_STR);
-
-    //     if ($stmt->execute())
-    //     return $stmt->fetchAll();
-    
-    // return false; 
-
-}
+    }
 
 }
 

@@ -1,13 +1,13 @@
 <?php
 //usuario
-include_once "../conf/default.inc.php";
-    require_once "../conf/Conexao.php";
+    include_once "conf/default.inc.php";
+    require_once "conf/Conexao.php";
 
-class usuario{
-    private $id_usuario;
-    private $nome_usuario;
-    private $login;
-    private $senha;
+    class usuario{
+        private $id_usuario;
+        private $nome_usuario;
+        private $login;
+        private $senha;
     
     
     public function __construct($idusu, $nomeusu, $login, $senha) {
@@ -36,11 +36,11 @@ class usuario{
         $pdo = Conexao::getInstance();
         $consulta = $pdo->query("SELECT * FROM usuario WHERE id_usuario = $idusu");
         $dados = array();
-        while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
-            $dados['id_usuario'] = $linha['id_usuario'];
-            $dados['nome_usuario'] = $linha['nome_usuario'];
-            $dados['login'] = $linha['login'];
-            $dados['senha'] = $linha['senha'];
+            while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
+                $dados['id_usuario'] = $linha['id_usuario'];
+                $dados['nome_usuario'] = $linha['nome_usuario'];
+                $dados['login'] = $linha['login'];
+                $dados['senha'] = $linha['senha'];
         }
         //var_dump($dados);
         return $dados;
@@ -48,8 +48,8 @@ class usuario{
 
     function excluir(){
         $pdo = Conexao::getInstance();
-        $stmt = $pdo ->prepare('DELETE FROM usuario WHERE id_usuario = :id_usuario');
-        $stmt->bindParam(':id_usuario', $this->id_usuario);
+        $stmt = $pdo->prepare('DELETE FROM usuario WHERE id_usuario = :id_usuario');
+        $stmt->bindValue(':id_usuario', $idusu);
         
         return $stmt->execute();
     }
@@ -81,13 +81,13 @@ class usuario{
         
         $pdo = Conexao::getInstance();
         $stmt = $pdo->prepare('INSERT INTO usuario (nome_usuario, login, senha) VALUES(:nome_usuario, :login, :senha)');
-        $stmt->bindParam(':nome_usuario', $nome_usuario, PDO::PARAM_STR);
-        $stmt->bindParam(':login', $login, PDO::PARAM_STR);
-        $stmt->bindParam(':senha', $senha, PDO::PARAM_STR);
+        $stmt->bindValue(':nome_usuario', $this->getnomeusu(), PDO::PARAM_STR);
+        $stmt->bindValue(':login', $this->getlogin(), PDO::PARAM_STR);
+        $stmt->bindValue(':senha', $this->getsenha(), PDO::PARAM_STR);
 
-        $nome_usuario = $this->getnomeusu();
-        $login = $this->getlogin(); 
-        $senha = $this->getsenha(); 
+        // $nome_usuario = $this->getnomeusu();
+        // $login = $this->getlogin(); 
+        // $senha = $this->getsenha(); 
         return $stmt->execute();
         
     }
@@ -130,19 +130,9 @@ class usuario{
         
 
 //var_dump($tipo);
-return $tipo;
+        return $tipo;
 
-        // $stmt = $pdo->prepare($query);
-        // $stmt->bindParam(':id', $id, PDO::PARAM_STR);
-        // $stmt->bindParam(':lado', $lado, PDO::PARAM_STR);
-        // $stmt->bindParam(':cor', $cor, PDO::PARAM_STR);
-
-    //     if ($stmt->execute())
-    //     return $stmt->fetchAll();
-    
-    // return false; 
-
-}
+    }
 
 }
 

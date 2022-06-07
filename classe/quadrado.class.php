@@ -1,6 +1,6 @@
 <?php
 //quadrado
-include_once "../conf/default.inc.php";
+    include_once "../conf/default.inc.php";
     require_once "../conf/Conexao.php";
 
 class quadrado{
@@ -36,12 +36,12 @@ class quadrado{
         $pdo = Conexao::getInstance();
         $consulta = $pdo->query("SELECT * FROM quadrado WHERE id= $id");
         $dados = array();
-        while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
-            $dados['id'] = $linha['id'];
-            $dados['lado'] = $linha['lado'];
-            $dados['cor'] = $linha['cor'];
-            $dados['tabuleiro_id_tabuleiro'] = $linha['tabuleiro_id_tabuleiro'];
-        }
+            while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
+                $dados['id'] = $linha['id'];
+                $dados['lado'] = $linha['lado'];
+                $dados['cor'] = $linha['cor'];
+                $dados['tabuleiro_id_tabuleiro'] = $linha['tabuleiro_id_tabuleiro'];
+                }
         //var_dump($dados);
         return $dados;
     }
@@ -106,19 +106,19 @@ class quadrado{
 
 }
 
-public function calcular_perimetro(){
+    public function calcular_perimetro(){
 
-          $perimetro = $this->lado * 4;
+        $perimetro = $this->lado * 4;
 
-          return $perimetro;
+        return $perimetro;
 
 }
 
-public function calcular_diagonal(){
+    public function calcular_diagonal(){
 
-    $diagonal = $this->lado * 1.44;
+        $diagonal = $this->lado * 1.44;
     
-    return $diagonal;
+        return $diagonal;
 
 }
 

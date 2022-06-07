@@ -71,7 +71,7 @@ lado do tabuleiro: <input type="text"  name="ladotabu" id="ladotabu" value="<?ph
 
 
 
-<input type="submit" name="acaotabu" value="salvar">
+<input type="submit" name="acao" value="salvar">
 </form>
 
 <?php
