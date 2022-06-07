@@ -128,7 +128,7 @@ while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
 
 <?php } ?> 
 </table>
-<a href="consulta.php"> consulta </a>
+<a href="usuario/consulta.php"> consulta </a>
 </body>
 </html>
 
