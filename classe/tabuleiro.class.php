@@ -43,7 +43,7 @@ class tabuleiro{
     function excluir(){
         $pdo = Conexao::getInstance();
         $stmt = $pdo ->prepare('DELETE FROM tabuleiro WHERE id_tabuleiro = :id_tabuleiro');
-        $stmt->bindParam(':id_tabuleiro', $this->id_tabuleiro);
+        $stmt->bindParam(':id_tabuleiro', $this->idtabu);
         
         return $stmt->execute();
     }

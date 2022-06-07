@@ -5,10 +5,9 @@
     require_once "../conf/Conexao.php";
 
 $acao=isset($_GET["acao"])?$_GET["acao"]:"";
-$lado=isset($_GET["lado"])?$_GET["lado"]:"";
-$cor=isset($_GET["cor"])?$_GET["cor"]:"";
-$id=isset($_GET["id"])?$_GET["id"]:"";
-$idtabu=isset($_GET["idtabu"])?$_GET["idtabu"]:"";
+$login=isset($_GET["login"])?$_GET["login"]:"";
+$nomeusu=isset($_GET["nomeusu"])?$_GET["nomeusu"]:"";
+$senha=isset($_GET["senha"])?$_GET["senha"]:"";
 
 if($acao == "salvar"){
     $idusu= isset($_GET['idusu']) ? $_GET['idusu'] : "";
@@ -38,7 +37,7 @@ else {
 
  if($acao == "excluir"){
 
-    $usu = new usuario($idusu, "", "", "");
+    $usu = new usuario($id_usuario, "", "", "");
     
    
 $usu->excluir();

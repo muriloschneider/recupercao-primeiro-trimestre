@@ -34,7 +34,7 @@ class usuario{
 
    public function buscar($idusu){
         $pdo = Conexao::getInstance();
-        $consulta = $pdo->query("SELECT * FROM usuario WHERE id_usuario= $id_usuario");
+        $consulta = $pdo->query("SELECT * FROM usuario WHERE id_usuario = $idusu");
         $dados = array();
         while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
             $dados['id_usuario'] = $linha['id_usuario'];

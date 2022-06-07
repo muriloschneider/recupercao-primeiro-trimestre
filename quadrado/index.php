@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
 <script>
         function excluirRegistro(url){
@@ -8,11 +10,10 @@
                 location.href = url;
         }
     </script>
-
+<center>
     <?php
     require_once "../classe/quadrado.class.php";
     include_once "acao.php";
-
     include_once "../conf/default.inc.php";
     require_once "../conf/Conexao.php";
 
@@ -54,14 +55,20 @@ $quad = new quadrado($dados["id"],$dados["lado"] , $dados["cor"], $dados["tabule
     <title>apresentar dados</title>
 
 </head>
-<body>
-<table border="1">
+<body class="body">
+
+<div class="margin-top">
+        <div class="container-fluid">
+
+<table border="1" class="table table-striped">
+<div class="container">
+  <!-- Conteúdo aqui -->
 
 <tr>
     <th>id</th>
     <th>lado</th>
     <th>cor</th>
-    <th>mostrar</th>
+    <th>Id tabuleiro</th>
 </tr>
 
 <form method="get" action="acao.php">
@@ -73,11 +80,13 @@ $quad = new quadrado($dados["id"],$dados["lado"] , $dados["cor"], $dados["tabule
 id do tabuleiro: <input type="text"  name="idtabu" id="idtabu" value="<?php if($acao == "editar") echo $quad->getidtabu()  ?>"><br><br>
 id: <input readonly type="text" name="id" id="id "value="<?php if($acao == "editar") echo $quad->getid();  else echo 0;?>"> <br><br>
 lado do quadrado: <input type="text"  name="lado" id="lado" value="<?php if($acao == "editar") echo $quad->getlado()  ?>"><br><br>
-cor: <input type="color" name="cor" id="cor "value="<?php if($acao == "editar") echo $quad->getcor()  ?>">
+cor: <input type="color" name="cor" id="cor "value="<?php if($acao == "editar") echo $quad->getcor()  ?>"><br><br>
 
-<input type="submit" name="acao" value="salvar">
+<button class="btn btn-primary" type="submit" name="acao" value="salvar">salvar</button>
 </form>
-
+</div>
+</div>
+</div>
 <?php
 
 $pdo = Conexao::getInstance();
@@ -129,7 +138,14 @@ while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
 
 <?php } ?> 
 </table>
-<a href="consulta.php"> consulta </a>
+<button type="button" class="btn btn-dark"><a href="consulta.php"> consulta </a></button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="bootstrap/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</center>
 </body>
 </html>
 

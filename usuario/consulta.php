@@ -68,6 +68,6 @@ while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
 
 <?php } ?> 
 </table>
-<a href="index.php"> index </a>
+<a href="usuario.php"> usuario </a>
 </body>
 </html>
