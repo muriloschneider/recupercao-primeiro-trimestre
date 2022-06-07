@@ -1,7 +1,7 @@
 <?php
 //usuario
-    include_once "conf/default.inc.php";
-    require_once "conf/Conexao.php";
+    include_once "../conf/default.inc.php";
+    require_once "../conf/Conexao.php";
 
     class usuario{
         private $id_usuario;
@@ -64,9 +64,6 @@
         $stmt->bindValue(':senha', $this->getsenha(), PDO::PARAM_STR);
 
         return $stmt->execute();
-
-       
-        
     }
 
     public function __toString(){
@@ -95,8 +92,7 @@
 
     public function listar($tipo = 0, $procurar = ""){
         
-
-        $pdo = Conexao::getInstance();
+    $pdo = Conexao::getInstance();
         if($tipo==""){
             $tipo = $pdo->query("SELECT * FROM usuario 
                                      WHERE id_usuario LIKE '$procurar%'
@@ -114,8 +110,6 @@
                                      WHERE nome_usuario LIKE '$procurar%' 
                                      ORDER BY nome_usuario");
         }
-        
-        
         
         else if($tipo =="3"){
             $tipo = $pdo->query("SELECT * FROM usuario 

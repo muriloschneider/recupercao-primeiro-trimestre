@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<center>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
 
 <script>
         function excluirRegistro(url){
@@ -50,7 +53,11 @@ $tab = new tabuleiro($dados["id_tabuleiro"],$dados["lado_tabuleiro"]);
 
 </head>
 <body>
-<table border="1">
+
+    <div class="margin-top">
+    <div class="container-fluid">
+    <table border="1" class="table table-striped">
+
 
 <tr>
     <th>id</th>
@@ -65,29 +72,31 @@ lado do tabuleiro: <input type="text"  name="ladotabu" id="ladotabu" value="<?ph
 
 <input type="submit" name="acao" value="salvar">
 </form>
-
+</div>
+</div>
 <?php
 
 $pdo = Conexao::getInstance();
-if($procura==""){
-    $consulta = $pdo->query("SELECT * FROM tabuleiro 
-                             WHERE id_tabuleiro LIKE '$procurar%'
-                             ORDER BY id_tabuleiro");
-}
+// if($procura==""){
+//     $consulta = $pdo->query("SELECT * FROM tabuleiro 
+//                              WHERE id_tabuleiro LIKE '$procurar%'
+//                              ORDER BY id_tabuleiro");
+// }
 
- else if($procura=="pro1"){
-    $consulta = $pdo->query("SELECT * FROM tabuleiro 
-                             WHERE id_tabuleiro LIKE '$procurar%'
-                             ORDER BY id_tabuleiro");
-}
+//  else if($procura=="pro1"){
+//     $consulta = $pdo->query("SELECT * FROM tabuleiro 
+//                              WHERE id_tabuleiro LIKE '$procurar%'
+//                              ORDER BY id_tabuleiro");
+// }
 
- else if($procura=="pro2"){
-    $consulta = $pdo->query("SELECT * FROM tabuleiro 
-                             WHERE lado_tabuleiro LIKE '$procurar%' 
-                             ORDER BY lado_tabuleiro");
-}
+//  else if($procura=="pro2"){
+//     $consulta = $pdo->query("SELECT * FROM tabuleiro 
+//                              WHERE lado_tabuleiro LIKE '$procurar%' 
+//                              ORDER BY lado_tabuleiro");
+// }
 
 
+$consulta = $tabu->listar($tipo, $procurar);
 
     
 while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
@@ -104,6 +113,7 @@ while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
 <?php } ?> 
 </table>
 <a href="consulta.php"> consulta </a>
+</center>
 </body>
 </html>
 

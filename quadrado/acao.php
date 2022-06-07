@@ -14,41 +14,33 @@ $idtabu=isset($_GET["idtabu"])?$_GET["idtabu"]:"";
 
 if($acao == "salvar"){
     $id= isset($_GET['id']) ? $_GET['id'] : "";
-    if($id == 0){
+        if($id == 0){
 
- $quad = new quadrado($id, $lado, $cor, $idtabu);
+            $quad = new quadrado($id, $lado, $cor, $idtabu);
 
-   
-    $funcao = $quad->inserir();
-    header("location:index.php");
-       
-}  
-
+            $funcao = $quad->inserir();
+            header("location:index.php");
+        }  
 else {
 
- $quad = new quadrado($id, $lado, $cor, $idtabu);
+    $quad = new quadrado($id, $lado, $cor, $idtabu);
     
-   
- $funcao = $quad->editar();
- header("location:index.php");
- //echo "entrou aqui  : ".$id;
+    $funcao = $quad->editar();
+    header("location:index.php");
  }
  }
  
-
-
-
-else if($acao == "excluir"){
+ else if($acao == "excluir"){
 
     $quad = new quadrado($id, "", "", "0");
     
-   
-$quad->excluir();
-header("location:index.php");
+    $quad->excluir();
+    header("location:index.php");
 
 //echo "entrou aqui  : ".$id;
 
 }
+
 //Consultar dados
 function buscarDados($id){
     $pdo = Conexao::getInstance();

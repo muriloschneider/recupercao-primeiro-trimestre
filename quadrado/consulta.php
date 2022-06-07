@@ -2,17 +2,14 @@
 <html lang="en">
 <head>
 
-
-
-    <?php
-include_once "../classe/quadrado.class.php";
-
-include_once "../conf/default.inc.php";
+<?php
+    include_once "../classe/quadrado.class.php";
+    include_once "../conf/default.inc.php";
     require_once "../conf/Conexao.php";
 
-$quad = new quadrado("1", 0, "", "0");
+    $quad = new quadrado("1", 0, "", "0");
 
-$procurar = isset($_GET["procurar"]) ? $_GET["procurar"] : "";    
+    $procurar = isset($_GET["procurar"]) ? $_GET["procurar"] : "";    
     $tipo = isset($_GET['tipo']) ? $_GET['tipo'] : 1;
 
 ?>
@@ -46,17 +43,16 @@ $procurar = isset($_GET["procurar"]) ? $_GET["procurar"] : "";
  </form>
 
 <?php
+    
+    $consulta = $quad->listar($tipo, $procurar);
 
-
-$consulta = $quad->listar($tipo, $procurar);
-
-
-
-
-while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
+    while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
 ?>
+
 <br><br>
-<tr><td><?php echo $linha['id'];?></td>
+
+<tr>
+    <td><?php echo $linha['id'];?></td>
     <td><?php echo $linha['lado'];?></td> 
     <td><?php echo $linha['cor'];?></td> 
     <td><?php echo $linha['tabuleiro_id_tabuleiro'];?></td> 

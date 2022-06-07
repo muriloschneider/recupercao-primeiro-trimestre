@@ -1,35 +1,36 @@
 <?php
 
-    require_once "classe/usuario.class.php";
-    include_once "conf/default.inc.php";
-    require_once "conf/Conexao.php";
+    require_once "../classe/usuario.class.php";
+    include_once "../conf/default.inc.php";
+    require_once "../conf/Conexao.php";
 
 $acao=isset($_GET["acao"])?$_GET["acao"]:"";
 $login=isset($_GET["login"])?$_GET["login"]:"";
 $nomeusu=isset($_GET["nomeusu"])?$_GET["nomeusu"]:"";
 $senha=isset($_GET["senha"])?$_GET["senha"]:"";
+$idusu= isset($_GET['idusu']) ? $_GET['idusu'] : "";
 
+$usu = new usuario($idusu, $nomeusu, $login, $senha);
 if($acao == "salvar"){
-    $idusu= isset($_GET['idusu']) ? $_GET['idusu'] : "";
+    
     if($idusu == 0){
 
- $usu = new usuario($idusu, $nomeusu, $login, $senha);
+ 
 
    
     $funcao = $usu->inserir();
-    header("location:usuario.php");
        
 }  
 
-else if ($acao == "editar"){
+else{
 
- $usu = new usuario($idusu, $nomeusu, $login, $senha);
     
    
  $funcao = $usu->editar();
- header("location:usuario.php");
+ 
  //echo "entrou aqui  : ".$id;
  }
+ header("location:usuario.php");
  }
  
 

@@ -8,7 +8,7 @@
 $acao=isset($_GET["acao"])?$_GET["acao"]:"";
 $ladotabu=isset($_GET["ladotabu"])?$_GET["ladotabu"]:"";
 $idtabu=isset($_GET["idtabu"])?$_GET["idtabu"]:"";
-$tab = new tabuleiro($idtabu,$ladotabu);
+$tabu = new tabuleiro($idtabu,$ladotabu);
 
 
 if($acao == "salvar"){

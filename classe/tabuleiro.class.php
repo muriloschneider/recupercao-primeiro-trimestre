@@ -64,9 +64,7 @@
         "<br> id tabuleiro: ".$this->getidtabu().
         "<br>   area: " .$this->calcular_area().
         "<br> perimetro: " .$this->calcular_perimetro();
-        
-        
-    }
+        }
 
     public function inserir(){
         
@@ -82,34 +80,30 @@
         
     }
 
-
-
-
     public function listar($tipo = 0, $procurar = ""){
         
-$resultado = "";
-        $pdo = Conexao::getInstance();
+    $pdo = Conexao::getInstance();
         if($tipo==""){
-            $resultado = $pdo->query("SELECT * FROM tabuleiro 
+            $tipo = $pdo->query("SELECT * FROM tabuleiro 
                                      WHERE id_tabuleiro LIKE '$procurar%'
                                      ORDER BY id_tabuleiro");
         }
         
          else if($tipo =="1"){
-            $resultado = $pdo->query("SELECT * FROM tabuleiro 
+            $tipo = $pdo->query("SELECT * FROM tabuleiro 
                                      WHERE id_tabuleiro LIKE '$procurar%'
                                      ORDER BY id_tabuleiro");
         }
         
          else if($tipo =="2"){
-            $resultado = $pdo->query("SELECT * FROM tabuleiro 
+            $tipo = $pdo->query("SELECT * FROM tabuleiro 
                                      WHERE lado_tabuleiro LIKE '$procurar%' 
                                      ORDER BY lado_tabuleiro");
         }
         
 
 //var_dump($tipo);
-        return $resultado;
+        return $tipo;
 
     }
 

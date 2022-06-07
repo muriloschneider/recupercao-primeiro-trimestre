@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
+
+<center>
 <script>
         function excluirRegistro(url){
             if (confirm("Confirma Exclusão?"))
@@ -10,10 +13,10 @@
     </script>
 
     <?php
-    require_once "classe/usuario.class.php";
+    require_once "../classe/usuario.class.php";
     include_once "acaousu.php";
-    include_once "conf/default.inc.php";
-    require_once "conf/Conexao.php";
+    include_once "../conf/default.inc.php";
+    require_once "../conf/Conexao.php";
 
 $usu = new usuario("1", "", "", "");
 
@@ -34,7 +37,7 @@ if($acao == "editar"){
 //echo $idusu, $nomeusu, $login, $senha;
     $idusu = isset($_GET['idusu']) ? $_GET['idusu'] : "";
 
-    $usu = new usuario($idusu,'','','');
+    $usu = new usuario($idusu,$nomeusu,$login,$senha);
 
     $dados = $usu->buscar($idusu);
 
@@ -53,7 +56,11 @@ if($acao == "editar"){
 </head>
 <body>
 
-<table border="1">
+    <div class="margin-top">
+    <div class="container-fluid">
+
+<table border="1" class="table table-striped">
+
 
     <tr>
         <th>id</th>
@@ -62,12 +69,8 @@ if($acao == "editar"){
         <th>senha</th>
     </tr>
 
-<form method="post" action="acaousu.php">
- <!-- Escolha o Tabuleiro
-                    <select name="idtabu"  id="idtabu" value="<?php if ($acao == "editar") echo $quad->getidtabu(); ?>">
-                         <?php
-                            //echo lista_tabuleiro(0); 
-                        ?>  -->
+<form method="get" action="acaousu.php">
+
     id: <input readonly type="text" name="idusu" id="idusu" value="<?php if($acao == "editar") echo $usu->getidusu();  else echo 0;?>"> <br><br>
     nome: <input type="text"  name="nomeusu" id="nomeusu" value="<?php if($acao == "editar") echo $usu->getnomeusu()  ?>"><br><br>
     login: <input type="text"  name="login" id="login" value="<?php if($acao == "editar") echo $usu->getlogin()  ?>"><br><br>
@@ -75,40 +78,13 @@ if($acao == "editar"){
 
     <input type="submit" name="acao" value="salvar">
 </form>
-
+</div>
+</div>
 <?php
 
 $pdo = Conexao::getInstance();
-    if($procura==""){
-        $consulta = $pdo->query("SELECT * FROM usuario 
-                             WHERE id_usuario LIKE '$procurar%'
-                             ORDER BY id_usuario");
-}
 
-    else if($procura=="pro1"){
-        $consulta = $pdo->query("SELECT * FROM usuario 
-                             WHERE id_usuario LIKE '$procurar%'
-                             ORDER BY id_usuario");
-}
-
-    else if($procura=="pro2"){
-        $consulta = $pdo->query("SELECT * FROM usuario 
-                             WHERE nome_usuario LIKE '$procurar%' 
-                             ORDER BY nome_usuario");
-}
-
-
-
-    else if($procura=="pro3"){
-        $consulta = $pdo->query("SELECT * FROM usuario 
-                             WHERE login LIKE '$procurar%' 
-                             ORDER BY login");
-}
-    else if($procura=="pro4"){
-        $consulta = $pdo->query("SELECT * FROM usuario 
-                             WHERE senha LIKE '$procurar%' 
-                             ORDER BY senha");
-}
+$consulta = $usu->listar($tipo, $procurar);
 
     
 while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
@@ -128,7 +104,8 @@ while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
 
 <?php } ?> 
 </table>
-<a href="usuario/consulta.php"> consulta </a>
+<a href="consulta.php"> consulta </a>
+</center>
 </body>
 </html>
 

@@ -64,9 +64,6 @@ class quadrado{
         $stmt->bindValue(':tabuleiro_id_tabuleiro', $this->getidtabu(), PDO::PARAM_STR);
 
         return $stmt->execute();
-
-       
-        
     }
 
     public function __toString(){
@@ -98,18 +95,13 @@ class quadrado{
 
     public function calcular_area(){
 
-          $area = $this->lado * $this->lado;
-
-          return $area;
-
-//ou   return $this->lado() * 4;
+        $area = $this->lado * $this->lado;
+        return $area;
 
 }
 
     public function calcular_perimetro(){
-
         $perimetro = $this->lado * 4;
-
         return $perimetro;
 
 }
@@ -124,8 +116,7 @@ class quadrado{
 
     public function listar($tipo = 0, $procurar = ""){
         
-
-        $pdo = Conexao::getInstance();
+    $pdo = Conexao::getInstance();
         if($tipo==""){
             $tipo = $pdo->query("SELECT * FROM quadrado 
                                      WHERE id LIKE '$procurar%'
@@ -144,8 +135,6 @@ class quadrado{
                                      ORDER BY lado");
         }
         
-        
-        
         else if($tipo =="3"){
             $tipo = $pdo->query("SELECT * FROM quadrado 
                                      WHERE cor LIKE '$procurar%' 
@@ -161,18 +150,7 @@ class quadrado{
 //var_dump($tipo);
 return $tipo;
 
-        // $stmt = $pdo->prepare($query);
-        // $stmt->bindParam(':id', $id, PDO::PARAM_STR);
-        // $stmt->bindParam(':lado', $lado, PDO::PARAM_STR);
-        // $stmt->bindParam(':cor', $cor, PDO::PARAM_STR);
-
-    //     if ($stmt->execute())
-    //     return $stmt->fetchAll();
-    
-    // return false; 
-
 }
-
 }
 
 ?>
