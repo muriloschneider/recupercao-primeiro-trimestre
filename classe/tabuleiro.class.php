@@ -42,8 +42,8 @@
 
     function excluir(){
         $pdo = Conexao::getInstance();
-        $stmt = $pdo ->prepare('DELETE FROM tabuleiro WHERE id_tabuleiro = :id_tabuleiro');
-        $stmt->bindParam(':id_tabuleiro', $this->idtabu);
+        $stmt = $pdo->prepare('DELETE FROM tabuleiro WHERE id_tabuleiro = :id_tabuleiro');
+        $stmt->bindParam(':id_tabuleiro', $this->getidtabu());
         
         return $stmt->execute();
     }
@@ -56,9 +56,6 @@
         $stmt->bindValue(':lado_tabuleiro', $this->getladotabu(), PDO::PARAM_STR);
         
         return $stmt->execute();
-
-       
-        
     }
 
     public function __toString(){
@@ -74,10 +71,13 @@
     public function inserir(){
         
         $pdo = Conexao::getInstance();
-        $stmt = $pdo->prepare('INSERT INTO tabuleiro (lado_tabuleiro) VALUES(:lado_tabuleiro)');
-        $stmt->bindParam(':lado_tabuleiro', $lado_tabuleiro, PDO::PARAM_STR);
+        $stmt = $pdo->prepare('INSERT INTO tabuleiro ( id_tabuleiro, lado_tabuleiro) VALUES(:id_tabuleiro, :lado_tabuleiro)');
+        $stmt->bindParam(':id_tabuleiro', $this->getidtabu(), PDO::PARAM_STR);
+        $stmt->bindParam(':lado_tabuleiro', $this->getladotabu(), PDO::PARAM_STR);
+
+        // $id_tabuleiro = $this->getidtabu();
+        // $lado_tabuleiro = $this->getladotabu();
         
-        $lado_tabuleiro = $this->getladotabu();
         return $stmt->execute();
         
     }
@@ -87,29 +87,29 @@
 
     public function listar($tipo = 0, $procurar = ""){
         
-
+$resultado = "";
         $pdo = Conexao::getInstance();
         if($tipo==""){
-            $tipo = $pdo->query("SELECT * FROM tabuleiro 
+            $resultado = $pdo->query("SELECT * FROM tabuleiro 
                                      WHERE id_tabuleiro LIKE '$procurar%'
                                      ORDER BY id_tabuleiro");
         }
         
          else if($tipo =="1"){
-            $tipo = $pdo->query("SELECT * FROM tabuleiro 
+            $resultado = $pdo->query("SELECT * FROM tabuleiro 
                                      WHERE id_tabuleiro LIKE '$procurar%'
                                      ORDER BY id_tabuleiro");
         }
         
          else if($tipo =="2"){
-            $tipo = $pdo->query("SELECT * FROM tabuleiro 
+            $resultado = $pdo->query("SELECT * FROM tabuleiro 
                                      WHERE lado_tabuleiro LIKE '$procurar%' 
                                      ORDER BY lado_tabuleiro");
         }
         
 
 //var_dump($tipo);
-        return $tipo;
+        return $resultado;
 
     }
 

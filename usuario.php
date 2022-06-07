@@ -31,15 +31,15 @@ $usu = new usuario("1", "", "", "");
 
 if($acao == "editar"){
 
- 
+//echo $idusu, $nomeusu, $login, $senha;
     $idusu = isset($_GET['idusu']) ? $_GET['idusu'] : "";
 
-    $usu = new usuario($idusu, $nomeusu, $login, $senha);
+    $usu = new usuario($idusu,'','','');
 
     $dados = $usu->buscar($idusu);
 
     $usu = new usuario($dados["id_usuario"],$dados["nome_usuario"] , $dados["login"], $dados["senha"]);
-
+//echo $dados["id_usuario"],$dados["nome_usuario"] , $dados["login"], $dados["senha"];
 }
 ?>
 
@@ -62,7 +62,7 @@ if($acao == "editar"){
         <th>senha</th>
     </tr>
 
-<form method="get" action="acaousu.php">
+<form method="post" action="acaousu.php">
  <!-- Escolha o Tabuleiro
                     <select name="idtabu"  id="idtabu" value="<?php if ($acao == "editar") echo $quad->getidtabu(); ?>">
                          <?php

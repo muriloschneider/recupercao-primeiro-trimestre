@@ -31,7 +31,7 @@ if($acao == "editar"){
  
 $idtabu = isset($_GET['idtabu']) ? $_GET['idtabu'] : "";
 
-$tab = new Tabuleiro(0, 0);
+$tab = new Tabuleiro($idtabu, $ladotabu);
 
 
 $dados = $tab->buscar($idtabu);
@@ -55,21 +55,13 @@ $tab = new tabuleiro($dados["id_tabuleiro"],$dados["lado_tabuleiro"]);
 <tr>
     <th>id</th>
     <th>lado</th>
-    
-    <th>mostrar</th>
 </tr>
 
 <form method="get" action="acaotabu.php">
- <!-- Escolha o Tabuleiro
-                    <select name="idtabu"  id="idtabu" value="<?php // if ($acao == "editar") echo $quad->getidtabu(); ?>"> -->
-                         <?php
-                            //echo lista_tabuleiro(0); 
-                        ?> 
-
-id: <input type="text" name="idtabu" id="idtabu" value="<?php if($acao == "editar") echo $tab->getidtabu();  else echo 0;?>"> <br><br>
-lado do tabuleiro: <input type="text"  name="ladotabu" id="ladotabu" value="<?php if($acao == "editar") echo $tab->getlado()  ?>"><br><br>
 
 
+id: <input readonly type="text" name="idtabu" id="idtabu" value="<?php if($acao == "editar") echo $tab->getidtabu();  else echo 0;?>"> <br><br>
+lado do tabuleiro: <input type="text"  name="ladotabu" id="ladotabu" value="<?php if($acao == "editar") echo $tab->getlado()?>"><br><br>
 
 <input type="submit" name="acao" value="salvar">
 </form>
@@ -103,7 +95,6 @@ while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
 <br><br>
 <tr><td><?php echo $linha['id_tabuleiro'];?></td>
     <td><?php echo $linha['lado_tabuleiro'];?></td> 
-    <td><?php //echo "<a href='mostrar.php?lado=".$linha['lado']."&cor=".$linha['cor']."'> mostrar </a> " ;?></td> 
     <td><a href="javascript:excluirRegistro('acaotabu.php?acao=excluir&idtabu=<?php echo $linha['id_tabuleiro'];?>')">deletar</a></td>
     <td><a href='tabu.php?acao=editar&idtabu=<?php echo $linha['id_tabuleiro'];?>'>editar</a></td>
 </tr>

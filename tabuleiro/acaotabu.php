@@ -8,36 +8,31 @@
 $acao=isset($_GET["acao"])?$_GET["acao"]:"";
 $ladotabu=isset($_GET["ladotabu"])?$_GET["ladotabu"]:"";
 $idtabu=isset($_GET["idtabu"])?$_GET["idtabu"]:"";
+$tab = new tabuleiro($idtabu,$ladotabu);
+
 
 if($acao == "salvar"){
     $idtabu= isset($_GET['idtabu']) ? $_GET['idtabu'] : "";
     if($idtabu == 0){
+        $funcao = $tab->inserir();
+    }  
 
- $tab = new tabuleiro($idtabu,$ladotabu);
-   
-    $funcao = $tab->inserir();
-    header("location:tabu.php");
-       
-}  
-
-else {
-
- $tab = new tabuleiro($idtabu,$ladotabu);
-
-   
- $funcao = $tab->editar();
- header("location:tabu.php");
+else{
+        $funcao = $tab->editar();
  //echo "entrou aqui  : ".$id;
- }
- }
+    }
+ header("location:tabu.php");
+
+    }
  
 
 
 
 else if($acao == "excluir"){
+    $idtabu= isset($_GET['idtabu']) ? $_GET['idtabu'] : "";
 
-    $tab = new Tabuleiro($idtabu, 0);
-
+    $tab = new Tabuleiro($idtabu, "");
+// echo $idtabu;
    
 $tab->excluir();
 header("location:tabu.php");
@@ -45,6 +40,7 @@ header("location:tabu.php");
 //echo "entrou aqui  : ".$id;
 
 }
+
 //Consultar dados
 function buscarDados($idtabu){
     $pdo = Conexao::getInstance();
@@ -59,13 +55,7 @@ function buscarDados($idtabu){
     return $dados;
 }
 
-// function exibir($chave, $dados){
-//     $str = 0;
-//     foreach($dados as $linha){
-//         $str .= "<option value='".$linha[$chave[0]]."'>ID: ".$linha[$chave[0]]." | Lado: ".$linha[$chave[1]]."</option>";
-//     }
-//     return $str;
-// }
+
 
 // function lista_tabuleiro($idtabu){
 //     $tab = new Tabuleiro("","");
