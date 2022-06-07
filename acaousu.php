@@ -21,7 +21,7 @@ if($acao == "salvar"){
        
 }  
 
-else {
+else if ($acao == "editar"){
 
  $usu = new usuario($idusu, $nomeusu, $login, $senha);
     
@@ -36,8 +36,9 @@ else {
 
 
  if($acao == "excluir"){
+    $idusu= isset($_GET['idusu']) ? $_GET['idusu'] : "";
 
-    $usu = new usuario($id_usuario, "", "", "");
+    $usu = new usuario($idusu, "", "", "");
     
    
 $usu->excluir();

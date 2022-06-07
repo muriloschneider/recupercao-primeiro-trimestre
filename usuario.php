@@ -34,7 +34,7 @@ if($acao == "editar"){
  
     $idusu = isset($_GET['idusu']) ? $_GET['idusu'] : "";
 
-    $usu = new usuario(0, "", "", "");
+    $usu = new usuario($idusu, $nomeusu, $login, $senha);
 
     $dados = $usu->buscar($idusu);
 
