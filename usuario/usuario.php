@@ -67,6 +67,9 @@ if($acao == "editar"){
         <th>nome</th>
         <th>login</th>
         <th>senha</th>
+        <th>deletar</th>
+        <th>editar</th>
+
     </tr>
 
 <form method="get" action="acaousu.php">

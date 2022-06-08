@@ -3,13 +3,13 @@
 <head>
 
 <?php
-include_once "quadrado.class.php";
-include_once "conf/default.inc.php";
+    include_once "quadrado.class.php";
+    include_once "conf/default.inc.php";
     require_once "conf/Conexao.php";
 
-$quad = new quadrado("1", 0, "");
+    $quad = new quadrado("1", 0, "");
 
-$procurar = isset($_POST["procurar"]) ? $_POST["procurar"] : ""; 
+    $procurar = isset($_POST["procurar"]) ? $_POST["procurar"] : ""; 
    $procura = isset($_POST["procura"]) ? $_POST["procura"] : "";
 
 ?>
