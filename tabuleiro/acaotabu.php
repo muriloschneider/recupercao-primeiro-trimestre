@@ -14,11 +14,11 @@ $tabu = new tabuleiro($idtabu,$ladotabu);
 if($acao == "salvar"){
     $idtabu= isset($_GET['idtabu']) ? $_GET['idtabu'] : "";
     if($idtabu == 0){
-        $funcao = $tab->inserir();
+        $funcao = $tabu->inserir();
     }  
 
 else{
-        $funcao = $tab->editar();
+        $funcao = $tabu->editar();
  //echo "entrou aqui  : ".$id;
     }
  header("location:tabu.php");

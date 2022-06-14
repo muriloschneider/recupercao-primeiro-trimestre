@@ -16,13 +16,24 @@
     </script>
 <center>
 
+
+
+
 <?php
+
+
+    require_once "../classe/tabuleiro.class.php";
+
     require_once "../classe/quadrado.class.php";
     include_once "acao.php";
     include_once "../conf/default.inc.php";
     require_once "../conf/Conexao.php";
 
 $quad = new quadrado("1", 0, "", 0);
+$tabu = new tabuleiro(0,0);
+
+ //$tabu->monta_option(0);
+
 
     $procurar = isset($_POST["procurar"]) ? $_POST["procurar"] : ""; 
     $procura = isset($_POST["procura"]) ? $_POST["procura"] : "";
@@ -71,11 +82,14 @@ if($acao == "editar"){
 
 <form method="get" action="acao.php">
  Escolha o Tabuleiro
-    <select name="idtabu"  id="idtabu" value="<?php if ($acao == "editar") echo $quad->getidtabu(); ?>">
+    <select name="idtabu"  id="idtabu" value="<?php if($acao == "editar") echo $quad->getlado()  ?>">
         <?php
-            echo lista_tabuleiro(0); 
+             $tabu->monta_option(0);
+
         ?> 
-id do tabuleiro: <input type="text"  name="idtabu" id="idtabu" value="<?php if($acao == "editar") echo $quad->getidtabu()  ?>"><br><br>
+        </select>
+        <br>
+
 id: <input readonly type="text" name="id" id="id "value="<?php if($acao == "editar") echo $quad->getid();  else echo 0;?>"> <br><br>
 lado do quadrado: <input type="text"  name="lado" id="lado" value="<?php if($acao == "editar") echo $quad->getlado()  ?>"><br><br>
 cor: <input type="color" name="cor" id="cor "value="<?php if($acao == "editar") echo $quad->getcor()  ?>"><br><br>
@@ -89,38 +103,10 @@ cor: <input type="color" name="cor" id="cor "value="<?php if($acao == "editar") 
 <?php
 
 $pdo = Conexao::getInstance();
-// if($procura==""){
-//     $consulta = $pdo->query("SELECT * FROM quadrado 
-//                              WHERE id LIKE '$procurar%'
-//                              ORDER BY id");
-// }
 
-//  else if($procura=="pro1"){
-//     $consulta = $pdo->query("SELECT * FROM quadrado 
-//                              WHERE id LIKE '$procurar%'
-//                              ORDER BY id");
-// }
+$consulta = quadrado::listar($tipo, $procurar); // Método com "static"
 
-//  else if($procura=="pro2"){
-//     $consulta = $pdo->query("SELECT * FROM quadrado 
-//                              WHERE lado LIKE '$procurar%' 
-//                              ORDER BY lado");
-// }
-
-
-
-// else if($procura=="pro3"){
-//     $consulta = $pdo->query("SELECT * FROM quadrado 
-//                              WHERE cor LIKE '$procurar%' 
-//                              ORDER BY cor");
-// }
-// else if($procura=="pro4"){
-//     $consulta = $pdo->query("SELECT * FROM quadrado 
-//                              WHERE tabuleiro_id_tabuleiro LIKE '$procurar%' 
-//                              ORDER BY tabuleiro_id_tabuleiro");
-// }
-
-    $consulta = $quad->listar($tipo, $procurar);
+    //$consulta = $quad->listar($tipo, $procurar); Método antigo com "public Function"
 
     while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
 ?>

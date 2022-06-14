@@ -16,9 +16,9 @@ if($acao == "salvar"){
     $id= isset($_GET['id']) ? $_GET['id'] : "";
         if($id == 0){
 
-            $quad = new quadrado($id, $lado, $cor, $idtabu);
+    //$quad = new quadrado($id, $lado, $cor, $idtabu);
 
-            $funcao = $quad->inserir();
+            $funcao = quadrado::inserir($lado, $cor, $idtabu);
             header("location:index.php");
         }  
 else {

@@ -39,8 +39,35 @@
         //var_dump($dados);
         return $dados;
     }
+    public function buscar_todos(){
+        $pdo = Conexao::getInstance();
+        $consulta = $pdo->query("SELECT * FROM tabuleiro ORDER BY id_tabuleiro");
+        // $dados = array();
+        //     while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
+        //         $dados['id_tabuleiro'] = $linha['id_tabuleiro'];
+        //        $dados['lado_tabuleiro'] = $linha['lado_tabuleiro'];
+            
+        // }
+        //var_dump($dados);
+        return $consulta->fetchAll();
+        
+    }
 
-    function excluir(){
+    function monta_option($id_tabuleiro){
+
+        //var_dump($this->buscar_todos());
+foreach ($this->buscar_todos() as $opcao){
+
+    //var_dump($opcao);
+   // echo "<br>";   // $this->buscar_todos();
+
+echo "<option value='".$opcao["id_tabuleiro"]."'> ".$opcao["id_tabuleiro"]. "</option>";
+
+}
+
+    }
+
+     function excluir(){
         $pdo = Conexao::getInstance();
         $stmt = $pdo->prepare('DELETE FROM tabuleiro WHERE id_tabuleiro = :id_tabuleiro');
         $stmt->bindParam(':id_tabuleiro', $this->getidtabu());
@@ -73,8 +100,8 @@
         $stmt->bindParam(':id_tabuleiro', $this->getidtabu(), PDO::PARAM_STR);
         $stmt->bindParam(':lado_tabuleiro', $this->getladotabu(), PDO::PARAM_STR);
 
-        // $id_tabuleiro = $this->getidtabu();
-        // $lado_tabuleiro = $this->getladotabu();
+         $id_tabuleiro = $this->getidtabu();
+         $lado_tabuleiro = $this->getladotabu();
         
         return $stmt->execute();
         

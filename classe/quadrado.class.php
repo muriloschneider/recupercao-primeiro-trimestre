@@ -8,13 +8,14 @@ class quadrado{
     private $lado;
     private $cor;
     private $tabuleiro_id_tabuleiro;
-    
+    private static $contador = 0;
     
     public function __construct($id, $lado, $cor, $idtabu) {
         $this->setId($id);
         $this->setLado($lado);
         $this->setCor($cor);
         $this->setIdTabu($idtabu);
+        self::$contador = self::$contador + 1;
     }
 
    
@@ -77,18 +78,25 @@ class quadrado{
         
     }
 
-    public function inserir(){
+    public static function inserir($lado, $cor, $tabuleiro_id_tabuleiro){
         
+
+       echo $lado; echo $cor; echo $tabuleiro_id_tabuleiro;
+
         $pdo = Conexao::getInstance();
         $stmt = $pdo->prepare('INSERT INTO quadrado (lado, cor, tabuleiro_id_tabuleiro) VALUES(:lado, :cor, :tabuleiro_id_tabuleiro)');
         $stmt->bindParam(':lado', $lado, PDO::PARAM_STR);
         $stmt->bindParam(':cor', $cor, PDO::PARAM_STR);
         $stmt->bindParam(':tabuleiro_id_tabuleiro', $tabuleiro_id_tabuleiro, PDO::PARAM_STR);
 
-        $lado = $this->getlado();
-        $cor = $this->getcor(); 
-        $tabuleiro_id_tabuleiro = $this->getidtabu(); 
+        // $lado = $this->getlado();
+        // $cor = $this->getcor(); 
+        // $tabuleiro_id_tabuleiro = $this->getidtabu(); 
         return $stmt->execute();
+
+
+
+       // $stmt->debugDumpparams();
         
     }
 
