@@ -114,7 +114,7 @@ class quadrado{
 
 }
 
-    public function listar($tipo = 0, $procurar = ""){
+    public static function listar($tipo = 0, $procurar = ""){
         
     $pdo = Conexao::getInstance();
         if($tipo==""){
