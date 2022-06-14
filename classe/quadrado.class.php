@@ -74,8 +74,9 @@ class quadrado{
         "<br> id tabuleiro: ".$this->getidtabu().
         "<br>   area: " .$this->calcular_area().
         "<br> perimetro: " .$this->calcular_perimetro().
-        "<br> diagonal: " .$this->calcular_diagonal();
-        
+        "<br> diagonal: " .$this->calcular_diagonal().
+        "<br> static: " .self::$contador;
+
     }
 
     public static function inserir($lado, $cor, $tabuleiro_id_tabuleiro){

@@ -91,6 +91,7 @@ echo "<option value='".$opcao["id_tabuleiro"]."'> ".$opcao["id_tabuleiro"]. "</o
         "<br> id tabuleiro: ".$this->getidtabu().
         "<br>   area: " .$this->calcular_area().
         "<br> perimetro: " .$this->calcular_perimetro();
+
         }
 
     public function inserir(){
