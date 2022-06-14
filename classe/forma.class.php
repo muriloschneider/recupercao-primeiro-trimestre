@@ -40,6 +40,18 @@ class forma{
         return $diagonal;
 
 }
+public function __toString(){
+
+    return  "<br> lado: ".$this->getlado().
+    "<br> cor: ".$this->getcor().
+    "<br> id tabuleiro: ".$this->getid().
+    "<br>   area: " .$this->calcular_area().
+    "<br> perimetro: " .$this->calcular_perimetro().
+    "<br> diagonal: " .$this->calcular_diagonal().
+    "<br> static: " .self::$contador;
+
+}
+
 
 }
     ?>
