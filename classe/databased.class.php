@@ -27,59 +27,25 @@ $stmt->bindValue($chave, $valor);
         $stmt = $conexao->prepare($stmt);
         $stmt = self::vinculaparametros($stmt, $parametros);
 
-        var_dump($parametros);
+       // var_dump($parametros);
+       try{
         return $stmt->execute();
+       }catch (execption $e){
+           throw new PDOException('erro:');
+       }
     }
 
-    // function excluir($sql, $parametros=array()){
-    //     //$pdo = Conexao::getInstance();
+//salvar
+    public static function buscar($stmt, $parametros=array()){
 
-    //     $conexao = self::iniciaconexao();
-    //     $stmt = $conexao->prepare($sql);
-    //     $stmt = self::vinculaparametros($stmt, $parametros);
-
-    //     // $stmt = $pdo ->prepare('DELETE FROM quadrado WHERE id = :id');
-    //     // $stmt->bindParam(':id', $this->id);
-        
-    //     return $stmt->execute();
-    // }
-    // public function editar(){
-            
-    //     $pdo = Conexao::getInstance();
-    //     $stmt = $pdo->prepare("UPDATE `quadrado` SET `lado` = :lado, `cor` = :cor, `tabuleiro_id_tabuleiro` = :tabuleiro_id_tabuleiro WHERE (`id` = :id);");
-    
-    //     $stmt->bindValue(':id', $this->getId(), PDO::PARAM_INT);
-    //     $stmt->bindValue(':lado', $this->getLado(), PDO::PARAM_STR);
-    //     $stmt->bindValue(':cor', $this->getCor(), PDO::PARAM_STR);
-    //     $stmt->bindValue(':tabuleiro_id_tabuleiro', $this->getidtabu(), PDO::PARAM_STR);
-
-    //     return $stmt->execute();
-    // }
-
-    // public static function inserir($sql, $parametros=array()){
-        
-    //     $conexao = self::iniciaconexao();
-    //     $stmt = $conexao->prepare($sql);
-    //     $stmt = self::vinculaparametros($stmt, $parametros);
-
-        //echo $lado; echo $cor; echo $tabuleiro_id_tabuleiro;
- 
-        //  $pdo = Conexao::getInstance();
-        //  $stmt = $pdo->prepare('INSERT INTO quadrado (lado, cor, tabuleiro_id_tabuleiro) VALUES(:lado, :cor, :tabuleiro_id_tabuleiro)');
-        //  $stmt->bindParam(':lado', $lado, PDO::PARAM_STR);
-        //  $stmt->bindParam(':cor', $cor, PDO::PARAM_STR);
-        //  $stmt->bindParam(':tabuleiro_id_tabuleiro', $tabuleiro_id_tabuleiro, PDO::PARAM_STR);
- 
-         // $lado = $this->getlado();
-         // $cor = $this->getcor(); 
-         // $tabuleiro_id_tabuleiro = $this->getidtabu(); 
-        // return $stmt->execute();
- 
- 
- 
-        // $stmt->debugDumpparams();
-         
-     //}
+        $conexao = self::iniciaconexao();
+        $stmt = $conexao->prepare($stmt);
+        $stmt = self::vinculaparametros($stmt, $parametros);
+        $stmt->execute();
+        return $stmt->fetchAll();
+       // var_dump($parametros);
+       // return $stmt->execute();
+    }
 
      public static function listar($sql, $parametros =array()){
 

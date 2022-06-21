@@ -30,12 +30,12 @@
     require_once "../conf/Conexao.php";
 
 $quad = new quadrado("1", 0, "", 0);
-echo $quad;
+//echo $quad;
 
 echo "<br>";
 
-$quad2 = new quadrado("5", 5, "", 5);
-echo $quad2;
+//$quad2 = new quadrado("5", 5, "", 5);
+//echo $quad2;
 
 $tabu = new tabuleiro(0,0);
 

@@ -35,19 +35,19 @@ class quadrado extends forma{
     
     
 
-   public function buscar($id){
-        $pdo = Conexao::getInstance();
-        $consulta = $pdo->query("SELECT * FROM quadrado WHERE id= $id");
-        $dados = array();
-            while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
-                $dados['id'] = $linha['id'];
-                $dados['lado'] = $linha['lado'];
-                $dados['cor'] = $linha['cor'];
-                $dados['tabuleiro_id_tabuleiro'] = $linha['tabuleiro_id_tabuleiro'];
-                }
-        //var_dump($dados);
-        return $dados;
-    }
+//    public function buscar($id){
+//         $pdo = Conexao::getInstance();
+//         $consulta = $pdo->query("SELECT * FROM quadrado WHERE id= $id");
+//         $dados = array();
+//             while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
+//                 $dados['id'] = $linha['id'];
+//                 $dados['lado'] = $linha['lado'];
+//                 $dados['cor'] = $linha['cor'];
+//                 $dados['tabuleiro_id_tabuleiro'] = $linha['tabuleiro_id_tabuleiro'];
+//                 }
+//         //var_dump($dados);
+//         return $dados;
+//     }
 
     // function excluir(){
     //     $pdo = Conexao::getInstance();
@@ -143,36 +143,40 @@ $par = array(' :lado'=>$this->getlado() ,
 
     public static function listar($tipo = 0, $procurar = ""){
         
-    $pdo = Conexao::getInstance();
         if($tipo==""){
-            $tipo = $pdo->query("SELECT * FROM quadrado 
+            $sql = ("SELECT * FROM quadrado 
                                      WHERE id LIKE '$procurar%'
                                      ORDER BY id");
         }
         
          else if($tipo =="1"){
-            $tipo = $pdo->query("SELECT * FROM quadrado 
+            $sql = ("SELECT * FROM quadrado 
                                      WHERE id LIKE '$procurar%'
                                      ORDER BY id");
         }
         
          else if($tipo =="2"){
-            $tipo = $pdo->query("SELECT * FROM quadrado 
+            $sql = ("SELECT * FROM quadrado 
                                      WHERE lado LIKE '$procurar%' 
                                      ORDER BY lado");
         }
         
         else if($tipo =="3"){
-            $tipo = $pdo->query("SELECT * FROM quadrado 
+            $sql = ("SELECT * FROM quadrado 
                                      WHERE cor LIKE '$procurar%' 
                                      ORDER BY cor");
         }
         else if($tipo =="4"){
-            $tipo = $pdo->query("SELECT * FROM quadrado 
+            $sql = ("SELECT * FROM quadrado 
                                      WHERE tabuleiro_id_tabuleiro LIKE '$procurar%' 
                                      ORDER BY tabuleiro_id_tabuleiro");
         }
         
+if ($tipo > 0)
+$par = array(':procurar'=>$procurar);
+else
+$par = array();
+return parent::buscar($sql, $par);
 
 //var_dump($tipo);
 return $tipo;
