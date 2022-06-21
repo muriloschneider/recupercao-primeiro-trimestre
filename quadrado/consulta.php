@@ -46,7 +46,8 @@
     
     $consulta = $quad->listar($tipo, $procurar);
 
-    while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
+    //while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
+        foreach($consulta as $linha){
 ?>
 
 <br><br>

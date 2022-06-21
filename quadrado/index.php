@@ -109,13 +109,14 @@ cor: <input type="color" name="cor" id="cor "value="<?php if($acao == "editar") 
 
 <?php
 
-$pdo = Conexao::getInstance();
+//$pdo = Conexao::getInstance();
 
 $consulta = quadrado::listar($tipo, $procurar); // Método com "static"
-
+//var_dump($consulta);
     //$consulta = $quad->listar($tipo, $procurar); Método antigo com "public Function"
 
-    while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
+    //while ($linha = $consulta->fetchAll()) {
+foreach($consulta as $linha){
 ?>
 
 <br><br>

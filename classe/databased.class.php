@@ -47,54 +47,7 @@ $stmt->bindValue($chave, $valor);
        // return $stmt->execute();
     }
 
-     public static function listar($sql, $parametros =array()){
-
-       //$stmt = self::executacomando()
-
-      // return $stmt->fetchAll();
-
-
-        
-        
-    //     $pdo = Conexao::getInstance();
-    //         if($tipo==""){
-    //             $tipo = $pdo->query("SELECT * FROM quadrado 
-    //                                      WHERE id LIKE '$procurar%'
-    //                                      ORDER BY id");
-    //         }
-            
-    //          else if($tipo =="1"){
-    //             $tipo = $pdo->query("SELECT * FROM quadrado 
-    //                                      WHERE id LIKE '$procurar%'
-    //                                      ORDER BY id");
-    //         }
-            
-    //          else if($tipo =="2"){
-    //             $tipo = $pdo->query("SELECT * FROM quadrado 
-    //                                      WHERE lado LIKE '$procurar%' 
-    //                                      ORDER BY lado");
-    //         }
-            
-    //         else if($tipo =="3"){
-    //             $tipo = $pdo->query("SELECT * FROM quadrado 
-    //                                      WHERE cor LIKE '$procurar%' 
-    //                                      ORDER BY cor");
-    //         }
-    //         else if($tipo =="4"){
-    //             $tipo = $pdo->query("SELECT * FROM quadrado 
-    //                                      WHERE tabuleiro_id_tabuleiro LIKE '$procurar%' 
-    //                                      ORDER BY tabuleiro_id_tabuleiro");
-    //         }
-            
-    
-    // //var_dump($tipo);
-    // return $tipo;
-    
-    }
-
-
-
-
+     
 
 
 
