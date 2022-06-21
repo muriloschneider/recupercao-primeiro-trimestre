@@ -1,16 +1,21 @@
 <?php
 
-class forma{
+ include_once "../conf/default.inc.php";
+ require_once "../conf/Conexao.php";
+ require_once "../classe/databased.class.php";
+
+
+class forma extends databased{
     private $id;
     private $cor;
-    private $tabuleiro;
-    private static $contador = 0;
+    private $tabuleiro_id_tabuleiro;
+    //private static $contador = 0;
     
-    public function __construct($id, $cor, $tab) {
-        $this->setId($id);
-        $this->setCor($cor);
-        $this->setTabuleiro($tab);
-        self::$contador = self::$contador + 1;
+    public function __construct($id, $cor, $idtabu) {
+        $this->setid($id);
+        $this->setcor($cor);
+        $this->setidtabu($idtabu);
+       // self::$contador = self::$contador + 1;
     }
 
    

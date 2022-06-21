@@ -2,34 +2,36 @@
 //quadrado
     include_once "../conf/default.inc.php";
     require_once "../conf/Conexao.php";
+require_once "../classe/forma.class.php";
 
-class quadrado{
-    private $id;
+class quadrado extends forma{
+    //private $id;
     private $lado;
-    private $cor;
-    private $tabuleiro_id_tabuleiro;
-    private static $contador = 0;
+    // private $cor;
+    // private $tabuleiro_id_tabuleiro;
+   // private static $contador = 0;
     
     public function __construct($id, $lado, $cor, $idtabu) {
-        $this->setId($id);
+       // $this->setId($id);
+       parent::__construct($id, $cor, $idtabu);
         $this->setLado($lado);
-        $this->setCor($cor);
-        $this->setIdTabu($idtabu);
-        self::$contador = self::$contador + 1;
+       // $this->setCor($cor);
+       // $this->setIdTabu($idtabu);
+       // self::$contador = self::$contador + 1;
     }
 
    
 
-    public function getid(){  return $this->id; }
+    // public function getid(){  return $this->id; }
     public function getlado(){  return $this->lado; }
-    public function getcor(){  return $this->cor; }
-    public function getidtabu(){  return $this->tabuleiro_id_tabuleiro; }
+    // public function getcor(){  return $this->cor; }
+    // public function getidtabu(){  return $this->tabuleiro_id_tabuleiro; }
    
 
-    public function setid($id) { $this->id = $id; }
+    // public function setid($id) { $this->id = $id; }
     public function setlado($lado) { $this->lado = $lado; }
-    public function setcor($cor) { $this->cor = $cor; }
-    public function setidtabu($idtabu) { $this->tabuleiro_id_tabuleiro = $idtabu; }
+    // public function setcor($cor) { $this->cor = $cor; }
+    // public function setidtabu($idtabu) { $this->tabuleiro_id_tabuleiro = $idtabu; }
     
     
 
@@ -47,53 +49,69 @@ class quadrado{
         return $dados;
     }
 
-    function excluir(){
-        $pdo = Conexao::getInstance();
-        $stmt = $pdo ->prepare('DELETE FROM quadrado WHERE id = :id');
-        $stmt->bindParam(':id', $this->id);
+    // function excluir(){
+    //     $pdo = Conexao::getInstance();
+    //     $stmt = $pdo ->prepare('DELETE FROM quadrado WHERE id = :id');
+    //     $stmt->bindParam(':id', $this->id);
         
-        return $stmt->execute();
-    }
+    //     return $stmt->execute();
+    // }
     public function editar(){
             
-        $pdo = Conexao::getInstance();
-        $stmt = $pdo->prepare("UPDATE `quadrado` SET `lado` = :lado, `cor` = :cor, `tabuleiro_id_tabuleiro` = :tabuleiro_id_tabuleiro WHERE (`id` = :id);");
+        // $pdo = Conexao::getInstance();
+        // $stmt = $pdo->prepare("UPDATE `quadrado` SET `lado` = :lado, `cor` = :cor, `tabuleiro_id_tabuleiro` = :tabuleiro_id_tabuleiro WHERE (`id` = :id);");
     
-        $stmt->bindValue(':id', $this->getId(), PDO::PARAM_INT);
-        $stmt->bindValue(':lado', $this->getLado(), PDO::PARAM_STR);
-        $stmt->bindValue(':cor', $this->getCor(), PDO::PARAM_STR);
-        $stmt->bindValue(':tabuleiro_id_tabuleiro', $this->getidtabu(), PDO::PARAM_STR);
+        // $stmt->bindValue(':id', $this->getId(), PDO::PARAM_INT);
+        // $stmt->bindValue(':lado', $this->getLado(), PDO::PARAM_STR);
+        // $stmt->bindValue(':cor', $this->getCor(), PDO::PARAM_STR);
+        // $stmt->bindValue(':tabuleiro_id_tabuleiro', $this->getidtabu(), PDO::PARAM_STR);
 
-        return $stmt->execute();
+$sql = "UPDATE quadrado
+        SET lado = :lado, cor = :cor, tabuleiro_id_tabuleiro = :idtabu
+        WHERE id = :id";
+
+$par = array(' :lado'=>$this->getlado() ,
+              ':cor'=>$this->getcor() ,
+              ':id'=>$this->getid() ,
+              ':tabuleiro_id_tabuleiro'=>$this->getidtabu() );
+
+        return parent::executacomando($sql, $par);
     }
 
     public function __toString(){
 
-        return  "<br> lado: ".$this->getlado().
-        "<br> cor: ".$this->getcor().
-        "<br> id tabuleiro: ".$this->getidtabu().
-        "<br>   area: " .$this->calcular_area().
-        "<br> perimetro: " .$this->calcular_perimetro().
-        "<br> diagonal: " .$this->calcular_diagonal().
-        "<br> static: " .self::$contador;
+        return  "<br> lado: ".$this->getlado();
+        // "<br> cor: ".$this->getcor().
+        // "<br> id tabuleiro: ".$this->getidtabu().
+        // "<br>   area: " .$this->calcular_area().
+        // "<br> perimetro: " .$this->calcular_perimetro().
+        // "<br> diagonal: " .$this->calcular_diagonal().
+        // "<br> static: " .self::$contador;
 
     }
 
-    public static function inserir($lado, $cor, $tabuleiro_id_tabuleiro){
+    public function inserir(){
         
 
-       echo $lado; echo $cor; echo $tabuleiro_id_tabuleiro;
+    //    echo $lado; echo $cor; echo $tabuleiro_id_tabuleiro;
 
-        $pdo = Conexao::getInstance();
-        $stmt = $pdo->prepare('INSERT INTO quadrado (lado, cor, tabuleiro_id_tabuleiro) VALUES(:lado, :cor, :tabuleiro_id_tabuleiro)');
-        $stmt->bindParam(':lado', $lado, PDO::PARAM_STR);
-        $stmt->bindParam(':cor', $cor, PDO::PARAM_STR);
-        $stmt->bindParam(':tabuleiro_id_tabuleiro', $tabuleiro_id_tabuleiro, PDO::PARAM_STR);
+    //     $pdo = Conexao::getInstance();
+
+        $sql = 'INSERT INTO quadrado (lado, cor, tabuleiro_id_tabuleiro) VALUES(:lado, :cor, :tabuleiro_id_tabuleiro)';
+
+        $parametros = array(":lado"=>$this->getlado() ,
+                    ":cor"=>$this->getcor() ,
+                    ":tabuleiro_id_tabuleiro"=>$this->getidtabu());
+
+                return parent::executacomando($sql, $parametros);
+        // $stmt->bindParam(':lado', $lado, PDO::PARAM_STR);
+        // $stmt->bindParam(':cor', $cor, PDO::PARAM_STR);
+        // $stmt->bindParam(':tabuleiro_id_tabuleiro', $tabuleiro_id_tabuleiro, PDO::PARAM_STR);
 
         // $lado = $this->getlado();
         // $cor = $this->getcor(); 
         // $tabuleiro_id_tabuleiro = $this->getidtabu(); 
-        return $stmt->execute();
+        //return $sql->execute();
 
 
 

@@ -1,6 +1,7 @@
 <?php
 
 require_once('forma.class.php');
+$ret = new retangulo(1, 'rosa', 1, 10, 40);
 
 class retangulo extends forma{
 
@@ -36,8 +37,29 @@ public function __construct($altura, $base) {
 
     }
 
+
+
+
+public static function inserir($lado, $cor, $tabuleiro_id_tabuleiro){
+        
+
+    echo $lado; echo $cor; echo $tabuleiro_id_tabuleiro;
+
+     $pdo = Conexao::getInstance();
+     $stmt = $pdo->prepare('INSERT INTO quadrado (lado, cor, tabuleiro_id_tabuleiro) VALUES(:lado, :cor, :tabuleiro_id_tabuleiro)');
+     $stmt->bindParam(':lado', $lado, PDO::PARAM_STR);
+     $stmt->bindParam(':cor', $cor, PDO::PARAM_STR);
+     $stmt->bindParam(':tabuleiro_id_tabuleiro', $tabuleiro_id_tabuleiro, PDO::PARAM_STR);
+
+     // $lado = $this->getlado();
+     // $cor = $this->getcor(); 
+     // $tabuleiro_id_tabuleiro = $this->getidtabu(); 
+     return $stmt->execute();
+
+
+
+    // $stmt->debugDumpparams();
+     
+ }
 }
-
-$ret = new retangulo(1, 'rosa', 1, 10, 40);
-
 ?>

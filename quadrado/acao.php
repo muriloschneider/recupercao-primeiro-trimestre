@@ -10,15 +10,20 @@ $acao=isset($_GET["acao"])?$_GET["acao"]:"";
 $lado=isset($_GET["lado"])?$_GET["lado"]:"";
 $cor=isset($_GET["cor"])?$_GET["cor"]:"";
 $id=isset($_GET["id"])?$_GET["id"]:"";
+
 $idtabu=isset($_GET["idtabu"])?$_GET["idtabu"]:"";
 
 if($acao == "salvar"){
     $id= isset($_GET['id']) ? $_GET['id'] : "";
         if($id == 0){
 
-    //$quad = new quadrado($id, $lado, $cor, $idtabu);
+            $lado=isset($_GET["lado"])?$_GET["lado"]:"";
+            $cor=isset($_GET["cor"])?$_GET["cor"]:"";
+            $idtabu=isset($_GET["idtabu"])?$_GET["idtabu"]:"";
 
-            $funcao = quadrado::inserir($lado, $cor, $idtabu);
+        $quad = new quadrado($id, $lado, $cor, $idtabu);
+
+            $funcao = $quad->inserir();
             header("location:index.php");
         }  
 else {
