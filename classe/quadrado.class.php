@@ -49,13 +49,20 @@ class quadrado extends forma{
 //         return $dados;
 //     }
 
-    // function excluir(){
-    //     $pdo = Conexao::getInstance();
-    //     $stmt = $pdo ->prepare('DELETE FROM quadrado WHERE id = :id');
-    //     $stmt->bindParam(':id', $this->id);
+    function excluir(){
+        // $pdo = Conexao::getInstance();
+        // $stmt = $pdo ->prepare('DELETE FROM quadrado WHERE id = :id');
+        // $stmt->bindParam(':id', $this->id);
         
-    //     return $stmt->execute();
-    // }
+        // return $stmt->execute();
+
+        $sql = 'DELETE FROM quadrado WHERE id = :id';
+
+        $parametros = array(":id"=>$this->getid());
+                   
+
+                return parent::executacomando($sql, $parametros);
+    }
     public function editar(){
             
         // $pdo = Conexao::getInstance();

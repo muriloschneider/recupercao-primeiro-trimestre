@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <?php
+    //include_once "../classe/forma.class.php";
+    //require_once "../classe/databassed.class.php";
     include_once "../classe/quadrado.class.php";
     $lado = isset($_GET['lado']) ? $_GET['lado']: 0;
     $cor = isset($_GET['cor']) ? $_GET['cor']: "";

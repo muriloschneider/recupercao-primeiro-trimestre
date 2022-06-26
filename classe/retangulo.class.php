@@ -12,16 +12,16 @@ public function __construct($altura, $base) {
 
     parent::__construct($id, $cor, $tab, $altura, $base);
     parent::__construct($id, $cor, $tab);
-    $this->setAltura($altura);
-    $this->setBase($base);
+    $this->setaltura($altura);
+    $this->setbase($base);
 
 }
 
     public function getaltura(){  return $this->altura; }
     public function getbase(){  return $this->base; }
 
-    public function setAltura($altura) { $this->altura = $altura; }
-    public function setBase($base) { $this->base = $base; }
+    public function setaltura($altura) { $this->altura = $altura; }
+    public function setbase($base) { $this->base = $base; }
 
     public function __toString(){
 
