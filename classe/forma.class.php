@@ -5,7 +5,7 @@
  require_once "../classe/databased.class.php";
 
 
-class forma extends databased{
+abstract class forma extends databased{
     private $id;
     private $cor;
     private $tabuleiro_id_tabuleiro;
@@ -31,20 +31,15 @@ class forma extends databased{
     public function setcor($cor) { $this->cor = $cor; }
     public function setidtabu($idtabu) { $this->tabuleiro_id_tabuleiro = $idtabu; }
 
-    public function calcular_area(){
 
-        $area = $this->lado * $this->lado;
-        return $area;
 
-}
+//     public function calcular_diagonal(){
 
-    public function calcular_diagonal(){
-
-        $diagonal = $this->lado * 1.44;
+//         $diagonal = $this->lado * 1.44;
     
-        return $diagonal;
+//         return $diagonal;
 
-}
+// }
 public function __toString(){
 
     return  "<br> lado: ".$this->getlado().
@@ -56,6 +51,13 @@ public function __toString(){
     "<br> static: " .self::$contador;
 
 }
+
+// public abstract function desenha();
+// public abstract function calcular_area();
+// public abstract function inserir();
+// public abstract function alterar();
+// public abstract function excluir();
+// public abstract static function listar($tipo = 0, $procurar = "");
 
 
 }

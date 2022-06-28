@@ -21,10 +21,10 @@ $stmt->bindValue($chave, $valor);
         return $stmt;
     }
 
-    public static function executacomando($stmt, $parametros=array()){
+    public static function executacomando($sql, $parametros=array()){
 
         $conexao = self::iniciaconexao();
-        $stmt = $conexao->prepare($stmt);
+        $stmt = $conexao->prepare($sql);
         $stmt = self::vinculaparametros($stmt, $parametros);
 
        // var_dump($parametros);

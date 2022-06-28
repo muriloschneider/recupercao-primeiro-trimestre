@@ -21,13 +21,14 @@
 
 <?php
 
+include_once ("../classe/autoload.php");
 
-    require_once "../classe/tabuleiro.class.php";
+    // require_once "../classe/tabuleiro.class.php";
 
-    require_once "../classe/quadrado.class.php";
-    include_once "acao.php";
-    include_once "../conf/default.inc.php";
-    require_once "../conf/Conexao.php";
+    // require_once "../classe/quadrado.class.php";
+    // include_once "acao.php";
+    // include_once "../conf/default.inc.php";
+    // require_once "../conf/Conexao.php";
 
 $quad = new quadrado("1", 0, "", 0);
 //echo $quad;
@@ -44,23 +45,17 @@ $tabu = new tabuleiro(0,0);
 
     $procurar = isset($_POST["procurar"]) ? $_POST["procurar"] : ""; 
     $procura = isset($_POST["procura"]) ? $_POST["procura"] : "";
-    $tipo = isset($_POST['tipo']) ? $_POST['tipo'] : 1;
+    $tipo = isset($_POST['tipo']) ? $_POST['tipo'] : "";
     $lado = isset($_GET['lado']) ? $_GET['lado'] : 0;
     $cor = isset($_GET['cor']) ? $_GET['cor'] : "";
     $acao = isset($_GET['acao']) ? $_GET['acao'] : "";
-    $id = 0;
-    $tabuleiro_id_tabuleiro = 0;
-
+    $id = isset($_GET['id']) ? $_GET['id'] : 0;
+    $tabuleiro_id_tabuleiro = isset($_GET['tabuleiro_id_tabuleiro']) ? $_GET['tabuleiro_id_tabuleiro'] : "";
 
 if($acao == "editar"){
 
-    $id = isset($_GET['id']) ? $_GET['id'] : "";
 
-    $tabuleiro_id_tabuleiro = isset($_GET['tabuleiro_id_tabuleiro']) ? $_GET['tabuleiro_id_tabuleiro'] : "";
-
-    $quad = new quadrado(0, 0, "", 0);
-
-    $dados = $quad->buscar($id);
+    $dados = quadrado::listar(1, $id);
 
     $quad = new quadrado($dados["id"],$dados["lado"] , $dados["cor"], $dados["tabuleiro_id_tabuleiro"]);
 

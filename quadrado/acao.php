@@ -30,7 +30,7 @@ else {
 
     $quad = new quadrado($id, $lado, $cor, $idtabu);
     
-    $funcao = $quad->editar();
+     $quad->editar();
     header("location:index.php");
  }
  }

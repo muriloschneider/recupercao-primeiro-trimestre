@@ -10,6 +10,7 @@
     
     
     public function __construct($idtabu, $ladotabu) {
+        
         $this->setidtabu($idtabu);
         $this->setladotabu($ladotabu);
     }

@@ -152,13 +152,13 @@ $par = array(' :lado'=>$this->getlado() ,
         
         if($tipo==""){
             $sql = ("SELECT * FROM quadrado 
-                                     WHERE id LIKE '$procurar%'
+                                     
                                      ORDER BY id");
         }
         
          else if($tipo =="1"){
             $sql = ("SELECT * FROM quadrado 
-                                     WHERE id LIKE '$procurar%'
+                                     WHERE id = '$procurar%'
                                      ORDER BY id");
         }
         
