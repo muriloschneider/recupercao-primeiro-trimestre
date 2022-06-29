@@ -23,12 +23,12 @@
 
 include_once ("../classe/autoload.php");
 
-    // require_once "../classe/tabuleiro.class.php";
+    //require_once "../classe/tabuleiro.class.php";
 
-    // require_once "../classe/quadrado.class.php";
-    // include_once "acao.php";
-    // include_once "../conf/default.inc.php";
-    // require_once "../conf/Conexao.php";
+    //require_once "../classe/quadrado.class.php";
+    include_once "acao.php";
+    include_once "../conf/default.inc.php";
+    require_once "../conf/Conexao.php";
 
 $quad = new quadrado("1", 0, "", 0);
 //echo $quad;
@@ -56,8 +56,9 @@ if($acao == "editar"){
 
 
     $dados = quadrado::listar(1, $id);
-
-    $quad = new quadrado($dados["id"],$dados["lado"] , $dados["cor"], $dados["tabuleiro_id_tabuleiro"]);
+//var_dump($dados);
+echo $dados[0]["id"];
+    $quad = new quadrado($dados[0]["id"],$dados[0]["lado"] , $dados[0]["cor"], $dados[0]["tabuleiro_id_tabuleiro"]);
 
 }
 ?>

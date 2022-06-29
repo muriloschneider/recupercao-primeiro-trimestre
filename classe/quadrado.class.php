@@ -74,7 +74,7 @@ class quadrado extends forma{
         // $stmt->bindValue(':tabuleiro_id_tabuleiro', $this->getidtabu(), PDO::PARAM_STR);
 
 $sql = "UPDATE quadrado
-        SET lado = :lado, cor = :cor, tabuleiro_id_tabuleiro = :idtabu
+        SET lado = :lado, cor = :cor, tabuleiro_id_tabuleiro = :tabuleiro_id_tabuleiro
         WHERE id = :id";
 
 $par = array(' :lado'=>$this->getlado() ,
@@ -152,7 +152,7 @@ $par = array(' :lado'=>$this->getlado() ,
         
         if($tipo==""){
             $sql = ("SELECT * FROM quadrado 
-                                     
+                                     where id = '$procurar'
                                      ORDER BY id");
         }
         
@@ -189,6 +189,12 @@ return parent::buscar($sql, $par);
 return $tipo;
 
 }
+
+public function desenha(){
+    $x = "<div style='height: ".$this->getlado()."vw; width: ".$this->getlado()."vw; background-color:".$this->getcor().";'></div>";
+    return $x;
+}
+
 }
 
 ?>

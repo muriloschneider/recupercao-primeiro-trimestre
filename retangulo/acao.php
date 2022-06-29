@@ -11,8 +11,6 @@ $altura=isset($_GET["altura"])?$_GET["altura"]:"";
 $cor=isset($_GET["cor"])?$_GET["cor"]:"";
 $id_retangulo=isset($_GET["id_retangulo"])?$_GET["id_retangulo"]:"";
 
-//$id_retangulotabu=isset($_GET["id_retangulotabu"])?$_GET["id_retangulotabu"]:"";
-
 if($acao == "salvar"){
     $id_retangulo= isset($_GET['id_retangulo']) ? $_GET['id_retangulo'] : "";
         if($id_retangulo == 0){
@@ -61,13 +59,6 @@ function buscarDados($id_retangulo){
     return $dados;
 }
 
-// function exibir($chave, $dados){
-//     $str = 0;
-//     foreach($dados as $linha){
-//         $str .= "<option value='".$linha[$chave[0]]."'>ID_retangulo: ".$linha[$chave[0]]." | altura: ".$linha[$chave[1]]."</option>";
-//     }
-//     return $str;
-// }
 
 // function lista_tabuleiro($id_retangulotabu){
 //     $tab = new Tabuleiro("","");
