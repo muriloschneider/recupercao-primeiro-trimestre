@@ -1,19 +1,20 @@
 <?php
-
+include_once "../conf/default.inc.php";
+require_once "../conf/Conexao.php";
 require_once('forma.class.php');
-$ret = new retangulo(1, 'rosa', 1, 10, 40);
 
 class retangulo extends forma{
 
 private $altura_retangulo;
 private $base_retangulo;
 
-public function __construct($altura_retangulo, $base_retangulo) {
+public function __construct($id, $altura, $base, $cor, $idtabu) {
 
     //parent::__construct($id, $cor, $idtabu, $altura_retangulo, $base_retangulo);
     parent::__construct($id, $cor, $idtabu);
     $this->setaltura($altura);
     $this->setbase($base);
+    
 
 }
 
@@ -29,23 +30,26 @@ public function __construct($altura_retangulo, $base_retangulo) {
         "<br> base_retangulo: ".$this->getbase().
         "<br> cor: ".$this->getcor().
         "<br> id tabuleiro: ".$this->getid().
-        "<br> .....: ".$this->getidtabu().
-        "<br>   area: " .$this->calcular_area().
-        "<br> perimetro: " .$this->calcular_perimetro().
-        "<br> diagonal: " .$this->calcular_diagonal().
-        "<br> static: " .self::$contador;
+        "<br> .....: ".$this->getidtabu();
+        // "<br>   area: " .$this->calcular_area().
+        // "<br> perimetro: " .$this->calcular_perimetro().
+        // "<br> diagonal: " .$this->calcular_diagonal().
+        // "<br> static: " .self::$contador;
 
     }
 
 
-    public function insere(){
-        $sql = 'INSERT INTO retangulo (altura_retangulo, base_retangulo, cor) 
-        VALUES(:altura_retangulo, :base_retangulo, :cor)';
+    public function inserir(){
+        $ret = new retangulo($id_retangulo, $altura_retangulo, $base_retangulo, $cor, $idtabu);
+
+        $sql = 'INSERT INTO retangulo (altura_retangulo, base_retangulo, cor, tabuleiro_id_tabuleiro) 
+        VALUES(:altura_retangulo, :base_retangulo, :cor, :tabuleiro_id_tabuleiro)';
         $parametros = array(":altura_retangulo"=>$this->getaltura(), 
                             ":base_retangulo"=>$this->getbase(), 
-                            ":cor"=>$this->getcor());
-                            //":ret_idtab"=>$this->getidtabu());
+                            ":cor"=>$this->getcor(),
+                            ":tabuleiro_id_tabuleiro"=>$this->getidtabu());
         return parent::executaComando($sql,$parametros);
+         
     }
 
     public function excluir(){
@@ -95,6 +99,11 @@ public function __construct($altura_retangulo, $base_retangulo) {
                                      WHERE base_retangulo LIKE '$procurar%' 
                                      ORDER BY base_retangulo");
         }
+        else if($tipo =="5"){
+            $sql = ("SELECT * FROM retangulo 
+                                     WHERE tabuleiro_id_tabuleiro LIKE '$procurar%' 
+                                     ORDER BY tabuleiro_id_tabuleiro");
+        }
         
 if ($tipo > 0)
 $par = array(':procurar'=>$procurar);
@@ -121,6 +130,10 @@ return $tipo;
     //    return $str;
     // }
 
+    public function Area() {
+        $area = $this->base * $this->altura;
+        return $area;
+    }
 
 }
 ?>
