@@ -3,6 +3,7 @@
 <head>
 <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
  
 
 <script>
@@ -20,47 +21,33 @@
 
 include_once ("../classe/autoload.php");
 
-    //require_once "../classe/tabuleiro.class.php";
-
-    //require_once "../classe/quadrado.class.php";
-    //include_once "../classe/retangulo.class.php";
+include_once "../classe/circulo.class.php";
     include_once "acao.php";
     include_once "../conf/default.inc.php";
     require_once "../conf/Conexao.php";
 
-    $tri = new triangulo("0", "0", "0", "0", "0", "0");
-
-//echo $quad;
-
-echo "<br>";
+    $circ = new circulo("1", 0, "", 0);
+    echo "<br>";
 
 $tabu = new tabuleiro(0,0);
-
 
 
     $procurar = isset($_POST["procurar"]) ? $_POST["procurar"] : ""; 
     $procura = isset($_POST["procura"]) ? $_POST["procura"] : "";
     $tipo = isset($_POST['tipo']) ? $_POST['tipo'] : "";
-    $base_triangulo = isset($_GET['base_triangulo']) ? $_GET['base_triangulo'] : 0;
+    $raio_circulo = isset($_GET['raio_circulo']) ? $_GET['raio_circulo'] : 0;
     $cor = isset($_GET['cor']) ? $_GET['cor'] : "";
     $acao = isset($_GET['acao']) ? $_GET['acao'] : "";
-    $id_triangulo = isset($_GET['id_triangulo']) ? $_GET['id_triangulo'] : 0;
-    $ladoum = isset($_GET['ladoum']) ? $_GET['ladoum'] : 0;
-    $ladodois = isset($_GET['ladodois']) ? $_GET['ladodois'] : 0;
-
+    $id = isset($_GET['id']) ? $_GET['id'] : 0;
+    $tabuleiro_id_tabuleiro = isset($_GET['tabuleiro_id_tabuleiro']) ? $_GET['tabuleiro_id_tabuleiro'] : "";
 
 if($acao == "editar"){
 
 
-    $dados = triangulo::listar(1, $id);
+    $dados = circulo::listar(1, $id);
 //var_dump($dados);
-echo $dados[0]["id_triangulo"];
-    $tri = new triangulo($dados[0]["id_triangulo"],
-                         $dados[0]["ladoum"],
-                         $dados[0]["ladodois"], 
-                         $dados[0]["cor"], 
-                         $dados[0]["tabuleiro_id_tabuleiro"],
-                         $dados[0]["base_triangulo"]); 
+echo $dados[0]["id"];
+    $circ = new circulo($dados[0]["id_circulo"],$dados[0]["raio_circulo"] , $dados[0]["cor"], $dados[0]["tabuleiro_id_tabuleiro"]);
 
 }
 ?>
@@ -80,29 +67,24 @@ echo $dados[0]["id_triangulo"];
 
 <tr>
     <th>id</th>
-    <th>lado um</th>
-    <th>lado dois</th>
+    <th>raio</th>
     <th>cor</th>
-    <th>id tabuleiro</th>
-    <th>base</th>
-
+    <th>Id tabuleiro</th>
 </tr>
 
 <form method="get" action="acao.php">
-  Escolha o Tabuleiro
-    <select name="idtabu"  id="idtabu" value="<?php if($acao == "editar") echo $tri->getidtabu()  ?>">
+ Escolha o Tabuleiro
+    <select name="idtabu"  id="idtabu" value="<?php if($acao == "editar") echo $circ->getraio()  ?>">
         <?php
-         $tabu->monta_option(0);
+             $tabu->monta_option(0);
 
         ?> 
         </select>
         <br>
 
-id: <input readonly type="text" name="id" id="id "value="<?php if($acao == "editar") echo $tri->getid();  else echo 0;?>"> <br><br>
-lado um: <input type="text"  name="ladoum" id="ladoum" value="<?php if($acao == "editar") echo $tri->getladoum()  ?>"><br><br>
-lado dois: <input type="text"  name="ladodois" id="ladodois" value="<?php if($acao == "editar") echo $tri->getladodois()  ?>"><br><br>
-cor: <input type="color" name="cor" id="cor "value="<?php if($acao == "editar") echo $tri->getcor()  ?>"><br><br>
-base triangulo: <input type="text" name="base_triangulo" id="base_triangulo "value="<?php if($acao == "editar") echo $tri->getbase()  ?>"><br><br>
+id: <input readonly type="text" name="id" id="id "value="<?php if($acao == "editar") echo $cir->getid();  else echo 0;?>"> <br><br>
+raio do circulo: <input type="text"  name="raio_circulo" id="raio_circulo" value="<?php if($acao == "editar") echo $circ->getraio()  ?>"><br><br>
+cor: <input type="color" name="cor" id="cor "value="<?php if($acao == "editar") echo $circ->getcor()  ?>"><br><br>
 
 <button class="btn btn-primary" type="submit" name="acao" value="salvar">salvar</button>
 
@@ -112,26 +94,20 @@ base triangulo: <input type="text" name="base_triangulo" id="base_triangulo "val
 
 <?php
 
-//$pdo = Conexao::getInstance();
-
-$consulta = triangulo::listar($tipo, $procurar); // Método com "static"
+$consulta = circulo::listar($tipo, $procurar); // Método com "static"
 //var_dump($consulta);
- 
 foreach($consulta as $linha){
 ?>
 
 <br><br>
 <tr>
-    <td><?php echo $linha['id_triangulo'];?></td>
-    <td><?php echo $linha['ladoum'];?></td> 
-    <td><?php echo $linha['ladodois'];?></td> 
+    <td><?php echo $linha['id_circulo'];?></td>
+    <td><?php echo $linha['raio_circulo'];?></td> 
     <td><?php echo $linha['cor'];?></td> 
     <td><?php echo $linha['tabuleiro_id_tabuleiro'];?></td> 
-    <td><?php echo $linha['base_triangulo'];?></td> 
-
-    <td><?php echo "<a href='mostrar.php?ladoum=".$linha['ladoum']."&ladodois=".$linha['ladodois']."&cor=".$linha['cor']."&base_triangulo=".$linha['base_triangulo']."'> mostrar </a> " ;?></td> 
-    <td><a href="javascript:excluirRegistro('acao.php?acao=excluir&id_triangulo=<?php echo $linha['id_triangulo'];?>')">deletar</a></td>
-    <td><a href='index.php?acao=editar&id=<?php echo $linha['id_triangulo'];?>'>editar</a></td>
+    <td><?php echo "<a href='mostrar.php?raio_circulo=".$linha['raio_circulo']."&cor=".$linha['cor']."'> mostrar </a> " ;?></td> 
+    <td><a href="javascript:excluirRegistro('acao.php?acao=excluir&id=<?php echo $linha['id_circulo'];?>')">deletar</a></td>
+    <td><a href='index.php?acao=editar&id=<?php echo $linha['id_circulo'];?>'>editar</a></td>
 </tr>
 
 <?php } ?>

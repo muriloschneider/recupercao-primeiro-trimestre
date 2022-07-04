@@ -33,21 +33,6 @@ class quadrado extends forma{
     // public function setcor($cor) { $this->cor = $cor; }
     // public function setidtabu($idtabu) { $this->tabuleiro_id_tabuleiro = $idtabu; }
     
-    
-
-//    public function buscar($id){
-//         $pdo = Conexao::getInstance();
-//         $consulta = $pdo->query("SELECT * FROM quadrado WHERE id= $id");
-//         $dados = array();
-//             while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
-//                 $dados['id'] = $linha['id'];
-//                 $dados['lado'] = $linha['lado'];
-//                 $dados['cor'] = $linha['cor'];
-//                 $dados['tabuleiro_id_tabuleiro'] = $linha['tabuleiro_id_tabuleiro'];
-//                 }
-//         //var_dump($dados);
-//         return $dados;
-//     }
 
     function excluir(){
         // $pdo = Conexao::getInstance();
@@ -151,9 +136,7 @@ $par = array(' :lado'=>$this->getlado() ,
     public static function listar($tipo = 0, $procurar = ""){
         
         if($tipo==""){
-            $sql = ("SELECT * FROM quadrado 
-                                     where id = '$procurar'
-                                     ORDER BY id");
+            $sql = ("SELECT * FROM quadrado");
         }
         
          else if($tipo =="1"){
