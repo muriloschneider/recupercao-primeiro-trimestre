@@ -12,10 +12,10 @@
                 location.href = url;
         }
     </script>
-<center>
 
 
 
+ <center>
 
 <?php
 
@@ -46,7 +46,7 @@ if($acao == "editar"){
 
     $dados = circulo::listar(1, $id);
 //var_dump($dados);
-echo $dados[0]["id"];
+echo $dados[0]["id_circulo"];
     $circ = new circulo($dados[0]["id_circulo"],$dados[0]["raio_circulo"] , $dados[0]["cor"], $dados[0]["tabuleiro_id_tabuleiro"]);
 
 }
@@ -122,6 +122,11 @@ foreach($consulta as $linha){
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </center>
+
+<a href="../quadrado../index.php"> quadrado </a>
+ <a href="../triangulo../index.php"> triângulo </a> 
+ <a href="../retangulo../index.php"> retângulo </a> 
+
 
 </body>
 </html>

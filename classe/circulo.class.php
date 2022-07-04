@@ -108,12 +108,12 @@ return $tipo;
 
 }
     public function circunferencia() {
-        $circ = 2 * pi() * $this->raio;
+        $circ = 2 * pi() * $this->raio_circulo;
     return $circ;
 }
 
     public function diametro() {
-        $di = 2 * $this->raio;
+        $di = 2 * $this->raio_circulo;
     return $di;
 }
 

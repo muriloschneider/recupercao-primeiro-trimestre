@@ -139,6 +139,11 @@ foreach($consulta as $linha){
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </center>
 
+<li> <a href="../circulo../index.php"> círculo </a> </li>
+<li> <a href="../triangulo../index.php"> triângulo </a> </li>
+<li> <a href="../retangulo../.php"> retângulo  </a> </li>
+
+
 </body>
 </html>
 

@@ -123,7 +123,7 @@ foreach($consulta as $linha){
 
     <td><?php echo "<a href='mostrar.php?altura_retangulo=".$linha['altura_retangulo']."&base_retangulo=".$linha['base_retangulo']."&cor=".$linha['cor']."'> mostrar </a> " ;?></td> 
     <td><a href="javascript:excluirRegistro('acao.php?acao=excluir&id=<?php echo $linha['id_retangulo'];?>')">deletar</a></td>
-    <td><a href='index.php?acao=editar&id=<?php echo $linha['id'];?>'>editar</a></td>
+    <td><a href='index.php?acao=editar&id=<?php echo $linha['id_retangulo'];?>'>editar</a></td>
 </tr>
 
 <?php } ?>
@@ -138,6 +138,10 @@ foreach($consulta as $linha){
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </center>
+<li> <a href="../quadrado../index.php"> quadrado </a> </li>
+<li> <a href="../triangulo../index.php"> triângulo  </a> </li>
+<li> <a href="../circulo../index.php"> círculo </a> </li>
+
 
 </body>
 </html>
