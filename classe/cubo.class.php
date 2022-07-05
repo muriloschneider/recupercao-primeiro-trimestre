@@ -7,7 +7,7 @@ require_once "../classe/forma.class.php";
     class Cubo extends Quadrado{
         private $id_cubo;
 
-    public function __construct($id_cubo, $lado, $cor, $id) {
+    public function __construct($id_cubo, $lado, $cor) {
         parent::__construct($id, $lado, $cor, '');
         $this->setid_cubo($id_cubo);
         $this->setcor($cor);
