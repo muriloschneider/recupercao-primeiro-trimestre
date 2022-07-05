@@ -91,8 +91,8 @@ echo $dados[0]["id_retangulo"];
         <br>
 
 id: <input readonly type="text" name="id" id="id "value="<?php if($acao == "editar") echo $quad->getid();  else echo 0;?>"> <br><br>
-altura do quadrado: <input type="text"  name="altura" id="altura" value="<?php if($acao == "editar") echo $quad->getaltura()  ?>"><br><br>
-base do quadrado: <input type="text"  name="base" id="base" value="<?php if($acao == "editar") echo $quad->getbase()  ?>"><br><br>
+altura do quadrado: <input type="text"  name="altura_retangulo" id="altura_retangulo" value="<?php if($acao == "editar") echo $quad->getaltura()  ?>"><br><br>
+base do quadrado: <input type="text"  name="base_retangulo" id="base_retangulo" value="<?php if($acao == "editar") echo $quad->getbase()  ?>"><br><br>
 cor: <input type="color" name="cor" id="cor "value="<?php if($acao == "editar") echo $quad->getcor()  ?>"><br><br>
 
 <button class="btn btn-primary" type="submit" name="acao" value="salvar">salvar</button>

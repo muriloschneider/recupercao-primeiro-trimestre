@@ -105,6 +105,8 @@ foreach($consulta as $linha){
     <td><?php echo $linha['raio_circulo'];?></td> 
     <td><?php echo $linha['cor'];?></td> 
     <td><?php echo $linha['tabuleiro_id_tabuleiro'];?></td> 
+
+
     <td><?php echo "<a href='mostrar.php?raio_circulo=".$linha['raio_circulo']."&cor=".$linha['cor']."'> mostrar </a> " ;?></td> 
     <td><a href="javascript:excluirRegistro('acao.php?acao=excluir&id=<?php echo $linha['id_circulo'];?>')">deletar</a></td>
     <td><a href='index.php?acao=editar&id=<?php echo $linha['id_circulo'];?>'>editar</a></td>

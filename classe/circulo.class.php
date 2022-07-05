@@ -118,11 +118,14 @@ return $tipo;
 }
 
     public function desenha(){
-        $str = "<div  width: ".$this->Diametro()."vw; height: ".$this->Diametro().
-        "vw; background: ".$this->getcor().";border: 10px ".$this->getcor().";'></div><br>";
+        $str = "<div style='border-radius: 50%; width: ".$this->Diametro()."vw; height: ".$this->Diametro().
+        "vw; background-color: #".$this->getcor().";border: 5px solid".$this->getcor().";'></div><br>";
     return $str;
 }
 
 }
-
+// background: lightblue;
+// border-radius: 50%;
+// width: 100px;
+// height: 100px;
 ?>

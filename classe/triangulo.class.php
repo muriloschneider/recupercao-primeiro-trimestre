@@ -134,7 +134,7 @@ return $tipo;
 }
 
 // public function __toString(){
-//     $str = parent::__toString();
+//     //$str = parent::__toString();
 //     $str .= "<br>Base:".$this->getbase().
 //     "<br>Lado um:".$this->getladoum().
 //     "<br>Lado dois:".$this->getladodois().
@@ -143,13 +143,14 @@ return $tipo;
 //     return $str;
 //  }
 
-
+    
     public function desenha(){
-        $str = "<div style='width: 0px; height: 0px; border-left: ".$this->ladoum."vw solid ; border-right: "
-        .$this->ladodois."vw solid ; border-bottom: ".$this->base_triangulo."vw solid ".parent::getcor().";'></div><br>";
+        $str = "<div  style='width: 0px; height: 0px; transition: transform 1s; transform: translateX(0) scale(0.5);
+        border-left: ".$this->ladoum."vw solid transparent; border-right: "
+        .$this->ladodois."vw solid transparent; border-bottom: ".$this->base_triangulo."vw solid ".parent::getcor().";'></div><br>";
         return $str;
     }
-    
+
     public function Tipo(){
         if ($this->getbase() == $this->getladoum() && $this->getladoum() == $this->getladodois()) {
             return "Equilátero";

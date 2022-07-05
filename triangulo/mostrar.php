@@ -14,11 +14,11 @@
 <html lang="en">
 <head>
      <style>
-    /* div{
-        background-color : <?php //echo $cor; ?>;
-        width: <?php //echo $ladoum ?>px;
-        height: <?php// echo $ladodois ?>px;
-    } */
+    div{
+        background-color : <?php echo $cor; ?>;
+        width: <?php echo $ladoum ?>px;
+        height: <?php echo $ladodois ?>px;
+    }
     </style> 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

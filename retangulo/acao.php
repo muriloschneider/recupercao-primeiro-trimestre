@@ -25,14 +25,13 @@ if($acao == "salvar"){
             $idtabu=isset($_GET["idtabu"])?$_GET["idtabu"]:"";
 
         $ret = new retangulo($id_retangulo, $altura_retangulo, $base_retangulo, $cor, $idtabu);
-       // $ret = new retangulo($id_retangulo, "0", "0", "0", "0");
 
              $ret->inserir();
             header("location:index.php");
         }  
 else {
 
-    $ret = new retangulo($id_retangulo, $base_retangulo, $altura_retangulo, $cor, $idtabu);
+    $ret = new retangulo($id_retangulo, $altura_retangulo, $base_retangulo, $cor, $idtabu);
     
     $funcao = $ret->editar();
     header("location:index.php");

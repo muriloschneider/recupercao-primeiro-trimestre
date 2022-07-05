@@ -6,25 +6,24 @@
     require_once "../conf/Conexao.php";
     require_once "../classe/tabuleiro.class.php";
 
-$acao=isset($_GET["acao"])?$_GET["acao"]:"";
-$raio_circulo=isset($_GET["raio_circulo"])?$_GET["raio_circulo"]:"";
-$cor=isset($_GET["cor"])?$_GET["cor"]:"";
-$id=isset($_GET["id"])?$_GET["id"]:"";
-
-$idtabu=isset($_GET["idtabu"])?$_GET["idtabu"]:"";
+    $acao=isset($_GET["acao"])?$_GET["acao"]:"";
+    $raio_circulo=isset($_GET["raio_circulo"])?$_GET["raio_circulo"]:"";
+    $cor=isset($_GET["cor"])?$_GET["cor"]:"";
+    $id=isset($_GET["id"])?$_GET["id"]:"";
+    $idtabu=isset($_GET["idtabu"])?$_GET["idtabu"]:"";
 
 if($acao == "salvar"){
     $id= isset($_GET['id']) ? $_GET['id'] : "";
         if($id == 0){
 
-            $raio_circulo=isset($_GET["raio"])?$_GET["raio" ]:"";
+            $raio_circulo=isset($_GET["raio_circulo"])?$_GET["raio_circulo" ]:"";
             $cor=isset($_GET["cor"])?$_GET["cor"]:"";
             $idtabu=isset($_GET["idtabu"])?$_GET["idtabu"]:"";
 
             $circ = new circulo($id_circulo, $raio_circulo, $cor, $idtabu);
 
             $funcao = $circ->inserir();
-            header("location:index.php");
+        header("location:index.php");
         }  
 else {
 
@@ -37,7 +36,7 @@ else {
  
  else if($acao == "excluir"){
 
-    $circ = new circulo($id, "0", "0", "0");
+    $circ = new circulo($id, "0", "", "0");
 
     $circ->excluir();
     header("location:index.php");

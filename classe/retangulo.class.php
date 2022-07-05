@@ -118,7 +118,7 @@ return $tipo;
 
     public function desenha(){
         $str = "<div style='width: ".$this->getbase()."vw; height: ".$this->getaltura()."vw; 
-        background: ".$this->getcor().";border: 1px solid".$this->getcor().";'></div><br>";
+        background: #".$this->getcor().";border: 1px solid".$this->getcor().";'></div><br>";
         return $str;
     }
 

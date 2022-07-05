@@ -13,8 +13,8 @@ class quadrado extends forma{
     
     public function __construct($id, $lado, $cor, $idtabu) {
        // $this->setId($id);
-       parent::__construct($id, $cor, $idtabu);
-        $this->setLado($lado);
+       parent::__construct($id, $lado, $cor, $idtabu);
+        $this->setlado($lado);
        // $this->setCor($cor);
        // $this->setIdTabu($idtabu);
        // self::$contador = self::$contador + 1;
@@ -72,8 +72,8 @@ $par = array(' :lado'=>$this->getlado() ,
 
     public function __toString(){
 
-        return  "<br> lado: ".$this->getlado();
-        // "<br> cor: ".$this->getcor().
+        return  "<br> lado: ".$this->getlado().
+         "<br> cor: ".$this->getcor();
         // "<br> id tabuleiro: ".$this->getidtabu().
         // "<br>   area: " .$this->calcular_area().
         // "<br> perimetro: " .$this->calcular_perimetro().
@@ -174,7 +174,7 @@ return $tipo;
 }
 
 public function desenha(){
-    $x = "<div style='height: ".$this->getlado()."vw; width: ".$this->getlado()."vw; background-color:".$this->getcor().";'></div>";
+    $x = "<div style='height: ".$this->getlado()."vw; width: ".$this->getlado()."vw; background-color: #".$this->getcor().";'></div>";
     return $x;
 }
 
