@@ -6,9 +6,9 @@
     class usuario{
         private $id_usuario;
         private $nome_usuario;
-        private $login;
+        private $login; //email
         private $senha;
-    
+        //private $endereco;
     
     public function __construct($idusu, $nomeusu, $login, $senha) {
         $this->setIdusu($idusu);

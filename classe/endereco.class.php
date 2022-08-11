@@ -2,22 +2,22 @@
 
 class endereco{
 
-private $id;
+private $id_endereco;
 private $rua;
 private $numero;
 private $bairro;
 
-public function __construct($id, $rua, $numero, $bairro) {
+public function __construct($id_endereco, $rua, $numero, $bairro) {
     
-     $this->setid($id);
+     $this->setid_endereco($id_endereco);
      $this->setrua($rua);
      $this->setnumero($numero);
      $this->setbairro($bairro);
 
     }
 
-    public function getid(){  return $this->id; }
-    public function setid($id) { $this->id = $id; }
+    public function getid_endereco(){  return $this->id_endereco; }
+    public function setid_endereco($id_endereco) { $this->id_endereco = $id_endereco; }
 
     public function getrua(){  return $this->rua; }
     public function setrua($rua) { $this->rua = $rua; }
@@ -30,9 +30,9 @@ public function __construct($id, $rua, $numero, $bairro) {
 
         function excluir(){
 
-            $sql = 'DELETE FROM endereco WHERE id = :id';
+            $sql = 'DELETE FROM endereco WHERE id_endereco = :id_endereco';
 
-            $parametros = array(":id"=>$this->getid());
+            $parametros = array(":id_endereco"=>$this->getid_endereco());
         
                 return parent::executacomando($sql, $parametros);
     }
@@ -41,11 +41,11 @@ public function __construct($id, $rua, $numero, $bairro) {
 
             $sql = "UPDATE endereco
             SET rua = :rua, numero = :numero, bairro = :bairro
-            WHERE id = :id";
+            WHERE id_endereco = :id_endereco";
 
             $par = array(' :rua'=>$this->getrua() ,
               ':numero'=>$this->getnumero() ,
-              ':id'=>$this->getid() ,
+              ':id_endereco'=>$this->getid_endereco() ,
               ':bairro'=>$this->getbairro() );
 
                 return parent::executacomando($sql, $par);
